@@ -27,3 +27,7 @@ header {
     align-items: center;
     outline: 1px solid red;
 }
+
+header > * {
+    margin: 0 10px;
+}

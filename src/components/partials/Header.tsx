@@ -12,7 +12,7 @@ const Header = ({ title }: HeadingProps) => {
     return (
         <header>
             <nav>
-                <CgMenuGridR/>
+                <CgMenuGridR size="2.5em"/>
             </nav>
             <h1>{title}</h1>
             <div>
@@ -23,7 +23,7 @@ const Header = ({ title }: HeadingProps) => {
                 <Button value="Login" />
             </div>
             <div>
-                <AiOutlineShoppingCart />
+                <AiOutlineShoppingCart size="2.5em" />
             </div>
         </header>
     )
