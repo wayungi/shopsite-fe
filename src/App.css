@@ -1,7 +1,7 @@
 
 main {
     outline: 1px solid red;
-    height: 100vh;
+    height: 100%; /* 100% of html & body which have been set to min-height 100%*/ 
 }
 
 /* home page */
@@ -14,7 +14,7 @@ main {
 /*header component*/
 header {
     display: flex;
-    height: 80px;
+    height: 60px;
     justify-content: center;
     align-items: center;
     outline: 1px solid red;
@@ -24,8 +24,12 @@ header > * {
     margin: 0 10px;
 }
 
-/*main nav*/
+/* title styles */
+header h1 {
+    color: rgb(43, 39, 39)
+}
 
+/*main nav*/
 .main-nav:hover, .cart:hover {
     outline: 1px solid grey;
     border-radius: 2px;
