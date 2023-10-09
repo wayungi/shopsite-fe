@@ -24,6 +24,17 @@ header > * {
     margin: 0 10px;
 }
 
+/*main nav*/
+
+.main-nav:hover, .cart:hover {
+    outline: 1px solid grey;
+    border-radius: 2px;
+}
+
+.login-trigger:hover, .main-nav:hover, .search-form-button:hover, .cart:hover {
+    cursor: pointer;
+}
+
 /* search form*/
 .search-form {
     display: flex;

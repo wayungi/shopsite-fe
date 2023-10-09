@@ -11,7 +11,7 @@ const Header = ({ title }: HeadingProps) => {
 
     return (
         <header>
-            <nav>
+            <nav className="main-nav">
                 <CgMenuGridR size="2.5em"/>
             </nav>
             <h1>{title}</h1>
@@ -21,7 +21,7 @@ const Header = ({ title }: HeadingProps) => {
             <div>
                 <Login />
             </div>
-            <div>
+            <div className="cart">
                 <AiOutlineShoppingCart size="2.5em" />
             </div>
         </header>
