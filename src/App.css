@@ -11,3 +11,19 @@ main {
     outline: 1px solid red;
     height: 100vh;
 }
+
+/* home page */
+
+.home-page {
+    height: 100%; /*stretch & be as wide as parent which is 100vh*/
+    outline: 1px solid black
+}
+
+/*header component*/
+header {
+    display: flex;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    outline: 1px solid red;
+}
