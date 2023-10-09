@@ -57,3 +57,20 @@ header > * {
     border:none;
     outline:1px solid grey;
 }
+
+/* Login trigger */
+.login-trigger {
+    display: flex;
+    flex-wrap: nowrap;
+    width:100px;
+    column-gap: 5px;
+    outline: 1px solid gray;
+    border-radius: 2px;
+}
+
+.login-trigger button {
+    flex-grow: 1;
+    border-radius: 0;
+    border:none;
+    border-left: 1px solid grey;
+}

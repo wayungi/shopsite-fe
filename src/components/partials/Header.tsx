@@ -1,6 +1,6 @@
-import { AiOutlineUser, AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 import {CgMenuGridR} from 'react-icons/cg';
-import Button from './Button';
+import Login  from './Login';
 import SearchForm from './SearchForm';
 
 
@@ -19,8 +19,7 @@ const Header = ({ title }: HeadingProps) => {
                 <SearchForm />
             </div>
             <div>
-                { <AiOutlineUser /> }
-                <Button value="Login" />
+                <Login />
             </div>
             <div>
                 <AiOutlineShoppingCart size="2.5em" />
