@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Button from "./Button";
 
 const SearchForm = () => { // JSX.Element
     const [search, setSearch] = useState('');
@@ -10,7 +9,7 @@ const SearchForm = () => { // JSX.Element
                 value = {search}
                 onChange={() => setSearch}
             />
-            <Button value="Search" />
+            <button className="search-form-button">Search</button>
     </form>
     )
     
