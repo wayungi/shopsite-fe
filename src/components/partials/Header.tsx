@@ -1,5 +1,6 @@
-import { AiOutlineUser } from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineShoppingCart } from 'react-icons/ai';
 import Button from './Button';
+import SearchForm from './SearchForm';
 
 
 type HeadingProps = { title: String } 
@@ -10,12 +11,16 @@ const Header = ({ title }: HeadingProps) => {
         <header>
             <nav>nav</nav>
             <h1>{title}</h1>
-            <p>search form</p>
+            <div>
+                <SearchForm />
+            </div>
             <div>
                 { <AiOutlineUser /> }
                 <Button value="Login" />
             </div>
-            <p>cart</p>
+            <div>
+                <AiOutlineShoppingCart />
+            </div>
         </header>
     )
         
