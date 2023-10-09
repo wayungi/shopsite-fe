@@ -4,13 +4,13 @@ import Button from "./Button";
 const SearchForm = () => { // JSX.Element
     const [search, setSearch] = useState('');
     return (
-        <form>
-        <input 
-            type="text"
-            value = {search}
-            onChange={() => setSearch}
-        />
-        <Button value="Search" />
+        <form className="search-form">
+            <input 
+                type="text"
+                value = {search}
+                onChange={() => setSearch}
+            />
+            <Button value="Search" />
     </form>
     )
     

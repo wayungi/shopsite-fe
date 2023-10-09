@@ -1,6 +1,7 @@
 * {
     margin:0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html, body {
@@ -30,4 +31,21 @@ header {
 
 header > * {
     margin: 0 10px;
+}
+
+/* search form*/
+.search-form {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 400px;
+    /* outline: 1px solid green; */
+}
+
+.search-form input[type=text] {
+    flex-grow: 1; /*It dictates what amount of the available space inside the flex container the item should take up.*/
+    height:30px;
+    border-radius: 2px 0 0 2px;
+    outline: 1px solid grey;
+    border: none;
+    padding: 0 10px;
 }
