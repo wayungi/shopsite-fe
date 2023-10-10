@@ -11,6 +11,7 @@ export function ProductPanel({ id, name, image, price, category, stock }: Produc
            <p className="product-price">Shs {price.toString() /*Number is not a valid ReactNode element so must be connverted to string*/}</p>
            <p className="product-category">category - {category}</p>
            <p className="product-stock">Quantity avaialable - {stock.toString() /*Number is not a valid ReactNode element so must be connverted to string */}</p> 
+           <button id="add-cart">Add to cart</button>
         </ article>
     );
 };
