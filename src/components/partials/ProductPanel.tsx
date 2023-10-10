@@ -1,15 +1,6 @@
-import { ReactNode } from "react";
+import Product from "../../Model/Product";
 
-type ProductPanelProps = {
-    "id": string, 
-    "name": string,
-    "image": string,
-    "price": ReactNode, // Type Number is not assignable to type ReactNode. price is a number but will change it to ReactNode
-    "category": String,
-    "stock": ReactNode // type Number is not assignable to ReactNode type
-}
-
-export function ProductPanel({ id, name, image, price, category, stock }: ProductPanelProps): React.ReactElement {
+export function ProductPanel({ id, name, image, price, category, stock }: Product): React.ReactElement {
 
     return (
         <article id={id}>
@@ -17,9 +8,9 @@ export function ProductPanel({ id, name, image, price, category, stock }: Produc
             <img src={image}  alt={name} />
            </div>
            <h4>{name}</h4>
-           <p>{price}</p>
+           <p>{price.toString() /*Number is not a valid ReactNode element so must be connverted to string*/}</p>
            <p>{category}</p>
-           <p>{stock}</p>
+           <p>{stock.toString() /*Number is not a valid ReactNode element so must be connverted to string*/}</p> 
         </ article>
     );
 };
