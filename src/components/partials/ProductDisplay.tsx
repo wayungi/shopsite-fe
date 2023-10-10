@@ -13,7 +13,7 @@ const ProductDisplay = ({ productList }:ProductDisplayProps) =>  {
     }
 
     return (
-        <section>
+        <section className="product-display">
            {productDsiplayList? productDsiplayList: "No products avaialable"}
         </section>
     );

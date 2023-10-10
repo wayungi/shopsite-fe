@@ -10,7 +10,7 @@ export function ProductPanel({ id, name, image, price, category, stock }: Produc
            <h4>{name}</h4>
            <p>{price.toString() /*Number is not a valid ReactNode element so must be connverted to string*/}</p>
            <p>{category}</p>
-           <p>{stock.toString() /*Number is not a valid ReactNode element so must be connverted to string*/}</p> 
+           <p>{stock.toString() /*Number is not a valid ReactNode element so must be connverted to string */}</p> 
         </ article>
     );
 };
