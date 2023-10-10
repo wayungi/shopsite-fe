@@ -25,7 +25,7 @@ const Header = ({ title }: HeadingProps) => {
                 <AiOutlineShoppingCart size="2.5em" />
             </div>
         </header>
-    )
+    )  
         
     
 }
