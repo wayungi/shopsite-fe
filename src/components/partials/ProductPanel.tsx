@@ -1,11 +1,12 @@
+import { ReactNode } from "react";
 
 type ProductPanelProps = {
     "id": string, 
     "name": string,
     "image": string,
-    "price": Number,
+    "price": ReactNode, // Type Number is not assignable to type ReactNode. price is a number but will change it to ReactNode
     "category": String,
-    "stock": Number
+    "stock": ReactNode // type Number is not assignable to ReactNode type
 }
 
 export function ProductPanel({ id, name, image, price, category, stock }: ProductPanelProps): React.ReactElement {
