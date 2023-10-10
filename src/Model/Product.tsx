@@ -1,10 +1,10 @@
 type Product = {
     "id": string, 
-    "name": String,
-    "image": String,
+    "name": string,
+    "image": string,
     "price": Number,
-    "category": String,
-    "stock": String
+    "category": string,
+    "stock": Number
 };
 
 export default Product;
