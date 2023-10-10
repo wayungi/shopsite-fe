@@ -1,13 +1,12 @@
 import Header from "../partials/Header";
 import ProductDisplay from "../partials/ProductDisplay";
-
-// type HomeProps = {Header: JSX.Element}
+import data from '../../Model/product.json';
 
 const Home = () => {
     return (
         <div className="home-page">
             <Header title='shopsite'/>
-            <ProductDisplay productList={[]}/>
+            <ProductDisplay productList={data}/>
         </div>
     )
 };
