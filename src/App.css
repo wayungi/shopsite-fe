@@ -87,11 +87,18 @@ header h1 {
 
 /* home component: ProductDisplay */
 
-/*==========product-display */
 .product-display {
     border:1px solid grey;
     padding:10px;
     width:80%;
     margin: 0 auto;
     border-radius: 2px;
+}
+
+.no-products {
+    outline:1px solid grey;
+    width: fit-content;
+    padding:10px;
+    border-radius:5px;
+    margin: calc(100vh/2) auto;
 }

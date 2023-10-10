@@ -1,5 +1,6 @@
 import ProductModel from "../../Model/Product"; 
 import ProductPanel from "./ProductPanel";
+import NoProducts from "./NoProducts";
 
 type ProductDisplayProps =  {
     productList: ProductModel[]
@@ -14,7 +15,7 @@ const ProductDisplay = ({ productList }:ProductDisplayProps) =>  {
 
     return (
         <section className="product-display">
-           {productDsiplayList? productDsiplayList: "No products avaialable"}
+           {productDsiplayList? productDsiplayList: <NoProducts />}
         </section>
     );
 };
