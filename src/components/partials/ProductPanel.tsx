@@ -1,4 +1,6 @@
 import Product from "../../Model/Product";
+import {MdOutlineDeleteOutline} from 'react-icons/md';
+import {AiOutlineEdit} from 'react-icons/ai';
 
 export function ProductPanel({ id, name, image, price, category, stock }: Product): React.ReactElement {
 
@@ -12,6 +14,10 @@ export function ProductPanel({ id, name, image, price, category, stock }: Produc
            <p className="product-category">category - {category}</p>
            <p className="product-stock">Quantity avaialable - {stock.toString() /*Number is not a valid ReactNode element so must be connverted to string */}</p> 
            <button id="add-cart">Add to cart</button>
+           <div className="admin-controls">
+            <AiOutlineEdit size="2em"/>
+            <MdOutlineDeleteOutline size="2em"/>
+           </div>
         </ article>
     );
 };

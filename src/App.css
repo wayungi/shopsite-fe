@@ -89,7 +89,7 @@ header h1 {
 .product-display {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-auto-rows: 310px;
+    grid-auto-rows: 340px;
     /* border:1px solid grey; */
     padding:10px;
     width:80%;
