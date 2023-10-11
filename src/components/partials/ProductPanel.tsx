@@ -15,8 +15,8 @@ export function ProductPanel({ id, name, image, price, category, stock }: Produc
            <p className="product-stock">Quantity avaialable - {stock.toString() /*Number is not a valid ReactNode element so must be connverted to string */}</p> 
            <button id="add-cart">Add to cart</button>
            <div className="admin-controls">
-            <AiOutlineEdit size="2em"/>
-            <MdOutlineDeleteOutline size="2em"/>
+            <AiOutlineEdit size="2em" className="edit" title="edit"/>
+            <MdOutlineDeleteOutline size="2em" className="delete" title="delete"/>
            </div>
         </ article>
     );
