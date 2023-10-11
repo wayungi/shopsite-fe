@@ -38,11 +38,8 @@ export const ProductSlice = createSlice({
     // },
     
     deleteProduct: (state, action: PayloadAction<string>) => {
-      state.products = state.products.filter((product) => product.id !== action.payload)
+      state.products = state.products.filter((product) => product.id !== action.payload);
     },
-    // decrement: (state) => {
-    //   state.value -= 1
-    // },
     
     // Use the PayloadAction type to declare the contents of `action.payload`
     editProduct: (state, action: PayloadAction<Product>) => {
@@ -61,7 +58,7 @@ export const { addProduct, deleteProduct, editProduct } = ProductSlice.actions
 //export const { increment, decrement, incrementByAmount } = counterSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectProducts = (state: RootState) => state.product.products
+export const selectProducts = (state: RootState) => state.products.products
 // export const selectCount = (state: RootState) => state.counter.value
 
 export default ProductSlice.reducer

@@ -1,9 +1,18 @@
 import Product from "../../Model/Product";
 import {MdOutlineDeleteOutline} from 'react-icons/md';
 import {AiOutlineEdit} from 'react-icons/ai';
+import { useAppDispatch } from '../../app/hooks';
+import { deleteProduct } from "../../features/products/productSlice";
 
-export function ProductPanel({ id, name, image, price, category, stock }: Product): React.ReactElement {
 
+const ProductPanel = ({ id, name, image, price, category, stock }: Product) => {
+    const dispatch = useAppDispatch();
+
+    const handleDeleteProduct = () => {
+        console.log('deleteing ptoduct')
+        dispatch(deleteProduct(id));
+    }
+    
     return (
         <article key={id} className="product-panel">
            <div>
@@ -16,7 +25,7 @@ export function ProductPanel({ id, name, image, price, category, stock }: Produc
            <button id="add-cart">Add to cart</button>
            <div className="admin-controls">
             <AiOutlineEdit size="2em" className="edit" title="edit"/>
-            <MdOutlineDeleteOutline size="2em" className="delete" title="delete"/>
+            <MdOutlineDeleteOutline size="2em" className="delete" title="delete" onClick={() => handleDeleteProduct() }/>
            </div>
         </ article>
     );
