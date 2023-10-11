@@ -1,6 +1,7 @@
 import ProductModel from "../../Model/Product"; 
 import ProductPanel from "./ProductPanel";
 import NoProducts from "./NoProducts";
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 
 type ProductDisplayProps =  {
@@ -8,6 +9,9 @@ type ProductDisplayProps =  {
 }
 
 const ProductDisplay = ({ productList }:ProductDisplayProps) =>  {
+    const products = useAppSelector((state) => state.products.products);
+
+    console.log(products);
 
     let productDisplayList  = null
     if(productList.length > 0){
