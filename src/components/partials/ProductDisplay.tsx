@@ -4,18 +4,19 @@ import NoProducts from "./NoProducts";
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 
-type ProductDisplayProps =  {
-    productList: ProductModel[]
-}
+// type ProductDisplayProps =  {
+//     productList: ProductModel[]
+// }
 
-const ProductDisplay = ({ productList }:ProductDisplayProps) =>  {
-    const products = useAppSelector((state) => state.products.products);
+const ProductDisplay = (/*{ productList }:ProductDisplayProps*/) =>  {
+    //fetch all the products from the redux store
+    const products: ProductModel[] = useAppSelector((state) => state.products.products);
 
-    console.log(products);
+  
 
     let productDisplayList  = null
-    if(productList.length > 0){
-        productDisplayList = productList.map((product) => ProductPanel(product))
+    if(products.length > 0){
+        productDisplayList = products.map((product) => ProductPanel(product))
     }
 
     return (
