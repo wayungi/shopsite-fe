@@ -274,7 +274,6 @@ ul.nav-menu {
     min-width:180px;
     top: 65px;
     left:140px;
-    /* outline:1px solid gray; */
     padding: 10px;
     border-radius: 0 0 5px 5px;
     background-color: #fff;
@@ -283,11 +282,20 @@ ul.nav-menu {
 
 .menu-item {
     list-style: none;
-    padding:8px 0;
+    padding:8px 10px;
+    cursor: pointer;
 }
 
 .menu-item:not(:last-child) {
     border-bottom:1px solid grey;
+}
+
+.menu-item:hover {
+    background-color: rgba(180,180,180, 0.2);
+}
+
+.menu-item:active {
+    background-color: rgba(180,180,180, 0.4);
 }
 
 

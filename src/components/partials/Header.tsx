@@ -4,12 +4,13 @@ import {CgMenuGridR} from 'react-icons/cg';
 import Login  from './Login';
 import SearchForm from './SearchForm';
 import NavMenu from './NavMenu';
-
+import AddProduct from '../pages/AddProduct';
 
 type HeadingProps = { title: String } 
 
 const Header = ({ title }: HeadingProps) => {
     const [showNav, setShowNav] = useState<Boolean>(false);
+    const [showAddProductForm, setShowAddProductForm] = useState<Boolean>(false);
 
     const handleShowNav = () => {
         setShowNav(!showNav);
@@ -32,7 +33,10 @@ const Header = ({ title }: HeadingProps) => {
             </div>
 
             {/* nav menu */}
-            {showNav && <NavMenu setShowNav={setShowNav} />}
+            {showNav && <NavMenu setShowNav={setShowNav} setShowAddProductForm={setShowAddProductForm}/>}
+            {/* add product */}
+            {showAddProductForm && <AddProduct />}
+
         </header>
     )  
         
