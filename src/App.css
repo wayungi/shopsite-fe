@@ -244,27 +244,27 @@ div.overlay {
     background-color: rgba(32, 30, 30, 0.979);
 }
 
-/* .edit-product {
+.edit-product {
     display: flex;
     flex-direction: column;
     border-radius: 3px;
     padding: 10px;
     background-color: #fff;
     width: 30%;
-} */
+}
 
-/* .edit-product img {
+.edit-product img {
     width: 200px;
     height: 200px;
     object-fit: cover;
-} */
+}
 
-/* .edit-product > .modal-header {
+.edit-product > .modal-header {
     display: flex;
     justify-content: space-between;
     padding: 0 10px;
     margin:20px 0;
-} */
+}
 
 
 

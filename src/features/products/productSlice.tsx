@@ -10,27 +10,15 @@ interface ProductState {
     categories: string[],
   }
 
-// interface CounterState {
-//   value: number
-// }
-
-
 // Define the initial state using that type
 const initialState: ProductState = {
     products: data, // this is an array
     categories: ["Kitchen ware", "games", "foot wear"]
   } //as ProductState
-// const initialState: CounterState = {
-//   value: 0,
-// }
 
 export const ProductSlice = createSlice({
   name: 'product',
-  // name: 'counter',
-
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
-
   reducers: {
     addProduct: (state, action: PayloadAction<Product>) => {
       state.products = [...state.products, action.payload]
@@ -43,25 +31,15 @@ export const ProductSlice = createSlice({
       state.products = state.products.filter((product) => product.id !== action.payload);
     },
     
-    // Use the PayloadAction type to declare the contents of `action.payload`
     editProduct: (state, action: PayloadAction<Product>) => {
-      const filteredProduct =  state.products.filter((product) => product.id === action.payload.id) // filter out the product to edit
-      const filteredProducts= state.products.filter((product) => product.id !== action.payload.id); // filter out the products not to edit
-      const editedProduct = {...filteredProduct, ...action.payload} // edit the product
-      state.products = [...filteredProducts, editedProduct] // add the edited profudct back into the value array
+      const filteredProduct =  state.products.filter((product) => product.id === action.payload.id);
+      const filteredProducts= state.products.filter((product) => product.id !== action.payload.id);
+      const editedProduct = {...filteredProduct, ...action.payload};
+      state.products = [...filteredProducts, editedProduct];
     },
-    // incrementByAmount: (state, action: PayloadAction<number>) => {
-    //   state.value += action.payload
-    // },
   },
 })
 
 export const { addProduct, deleteProduct, editProduct } = ProductSlice.actions
-//export const { increment, decrement, incrementByAmount } = counterSlice.actions
-
-// Other code such as selectors can use the imported `RootState` type
 export const selectProducts = (state: RootState) => state.products.products
-// export const selectCount = (state: RootState) => state.counter.value
-
 export default ProductSlice.reducer
-// export default counterSlice.reducer
