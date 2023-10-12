@@ -16,9 +16,13 @@ const ProductPanel = ({ id, name, image, price, category, stock }: Product) => {
         console.log('deleteing ptoduct')
         dispatch(deleteProduct(id));
     }
+
+    const handleCloseModal = () => {
+        setIsEditable(false);
+    }
     
     return (
-        <>
+        <> {isEditable ? 
             <div className="overlay">
                 <div className="edit-product">
                     <div className="modal-header">
@@ -43,9 +47,11 @@ const ProductPanel = ({ id, name, image, price, category, stock }: Product) => {
                     <label htmlFor="stock">Quantity in stock
                         <input type="text" value={stock.toString()} />
                     </label>
-                    <AiOutlineSave size="2em"/>
+                    <AiOutlineSave size="2em" onClick={() => handleCloseModal()}/>
                 </div>
             </div>
+
+        : null }
             
             <article key={id} className="product-panel">
             <div>
