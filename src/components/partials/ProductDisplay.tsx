@@ -2,21 +2,18 @@ import ProductModel from "../../Model/Product";
 import ProductPanel from "./ProductPanel";
 import NoProducts from "./NoProducts";
 import { useAppSelector } from '../../app/hooks';
-// import { deleteProduct } from "../../features/products/productSlice";
 
 
-// type ProductDisplayProps =  {
-//     productList: ProductModel[]
-// }
-
-const ProductDisplay = (/*{ productList }:ProductDisplayProps*/) =>  {
-
+const ProductDisplay = () =>  {
     //fetch all the products from the redux store
     const products: ProductModel[] = useAppSelector((state) => state.products.products);
-
     let productDisplayList  = null
     if(products.length > 0){
-        productDisplayList = products.map((product) => ProductPanel(product))
+        productDisplayList = products.map((product, index) => (<div key={index}>
+            {
+                <ProductPanel product = {product}/>
+            }
+        </div>))
     }
 
     return (

@@ -107,17 +107,15 @@ header h1 {
 }
 
 .product-panel {
-    /* outline:1px solid red; */
     padding:4px; 
     box-shadow: none;
     transition: all 0.2s;
 }
 
-.product-panel:hover {
+/* .product-panel:hover {
     box-shadow: 0 0 2px 1px grey;
     transform: scale(1.01);
-    /* outline: 1px solid grey; */
-}
+} */
 
 .product-panel img {
     width:100%;
@@ -229,7 +227,6 @@ form > * {
 
 .admin-controls > * {
     cursor: pointer;
-    /* border: 1px solid green; */
     width: 80px;
     height:25px;
 }
@@ -244,30 +241,30 @@ div.overlay {
     bottom:0;
     left:0;
     right:0;
-    background-color: rgba(32, 30, 30, 0.1);
+    background-color: rgba(32, 30, 30, 0.979);
 }
 
-.edit-product {
+/* .edit-product {
     display: flex;
     flex-direction: column;
     border-radius: 3px;
     padding: 10px;
     background-color: #fff;
     width: 30%;
-}
+} */
 
-.edit-product img {
+/* .edit-product img {
     width: 200px;
     height: 200px;
     object-fit: cover;
-}
+} */
 
-.edit-product > .modal-header {
+/* .edit-product > .modal-header {
     display: flex;
     justify-content: space-between;
     padding: 0 10px;
     margin:20px 0;
-}
+} */
 
 
 
