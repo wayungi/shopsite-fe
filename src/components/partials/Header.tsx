@@ -35,7 +35,7 @@ const Header = ({ title }: HeadingProps) => {
             {/* nav menu */}
             {showNav && <NavMenu setShowNav={setShowNav} setShowAddProductForm={setShowAddProductForm}/>}
             {/* add product */}
-            {showAddProductForm && <AddProduct />}
+            {showAddProductForm && <AddProduct setShowAddProductForm={setShowAddProductForm}/>}
 
         </header>
     )  

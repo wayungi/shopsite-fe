@@ -1,8 +1,7 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState,SetStateAction } from 'react';
 import { useAppSelector, useAppDispatch  } from '../../app/hooks';
 import {AiOutlineSave, AiFillCloseCircle} from 'react-icons/ai';
 import Product from '../../Model/Product';
-import { SetStateAction } from 'react';
 import { editProduct } from '../../features/products/productSlice';
 
 type editProductProps =  { 
