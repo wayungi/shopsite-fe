@@ -21,6 +21,7 @@ header {
     justify-content: center;
     align-items: center;
     box-shadow: 0 0 3px 0 grey;
+    position:relative;
 }
 
 header > * {
@@ -266,6 +267,28 @@ div.overlay {
     margin:20px 0;
 }
 
+/*Nav menu style*/
+
+ul.nav-menu {
+    position: absolute;
+    min-width:180px;
+    top: 65px;
+    left:140px;
+    /* outline:1px solid gray; */
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+    background-color: #fff;
+    box-shadow: 0 0 1px 2px rgba(180,180,180, 0.2)
+}
+
+.menu-item {
+    list-style: none;
+    padding:8px 0;
+}
+
+.menu-item:not(:last-child) {
+    border-bottom:1px solid grey;
+}
 
 
 
