@@ -1,44 +1,50 @@
-import { ChangeEvent, useState } from "react";
+import { /*ChangeEvent*/ Dispatch,SetStateAction } from "react";
+import {AiOutlineSave, AiFillCloseCircle} from 'react-icons/ai';
+import { useAppDispatch } from '../../app/hooks';
 
-const AddProduct = () => {
-    const [imagePath, setImagePath] = useState<string>('');
 
+type AddProductProps = {
+    setShowAddProductForm: Dispatch<SetStateAction<Boolean>>
+};
+
+const AddProduct = ({setShowAddProductForm}: AddProductProps) => {
+    const dispatch = useAppDispatch();
     // These categories should be loaded from redux
     const categories = ['Kitchen ware', 'games', 'electronics'];
+    const selectOptions = categories.map((category, index) => <option key={index} value={category}>{category}</option>);
 
-    const handleImagePath = (e: ChangeEvent<HTMLSelectElement>) => {
-        setImagePath(e.target.value)
+    const closeModal = () => {
+        setShowAddProductForm(false);
     }
 
-    const selectOptions = categories.map((category) => <option value={category}>{category}</option>)
+    const saveProduct = () => {
+        const newProduct =  {
+            
+        }
+        closeModal();
+    }
     
     return (
         <div className="add-product">
-            <form>
-                <div className="image-preview">
-                    <img src={imagePath} alt="product" />
-                </div>                
-                <div className="form-fields">
-                    {/* <div className="control-wrapper"> */}
-                        <h1>Add Product</h1>
-                        <input type="text"  name="name" required maxLength={20} placeholder="Produc name"/>
-                        <input type="file" name="image" required accept="image/png, image/jpg, image/gif, image/jpeg"/>
-                        <input type="text" name="price" required placeholder="Price"/>
-                        <input type="text" name="stock" placeholder="Quantity available" />
-                        <div>
-                            <label htmlFor="category">Product category</label>
-                            <select name="choice" onChange={(e) => handleImagePath(e)}>
-                                <option value=""> Select category</option>
-                                {categories.length? selectOptions : <option value="">No categories available</option>}
-                            </select>
-                        </div>
-                        <button type="submit">Save</button>
-                    {/* </div> */}
-                </div>
+            <form>  
+                <div>
+                    <h1>Add Product</h1>
+                    <AiFillCloseCircle size="2em" onClick={closeModal}/>
+                </div>             
+                <input type="text"  name="name" required maxLength={20} placeholder="Produc name"/>
+                <input type="file" name="image" required accept="image/png, image/jpg, image/gif, image/jpeg"/>
+                <input type="text" name="price" required placeholder="Price"/>
+                <input type="text" name="stock" placeholder="Quantity available" />
+                <label htmlFor="category">Product category
+                    <select name="choice">
+                        <option value=""> Select category</option>
+                        {categories.length? selectOptions : <option value="">No categories available</option>}
+                    </select>
+                </label>
+                <AiOutlineSave size="2em" onClick={saveProduct}/>
             </form>
         </div>
     );
-
 };
 
 export default AddProduct;
