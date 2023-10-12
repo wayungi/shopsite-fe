@@ -6,7 +6,8 @@ import data from '../../Model/product.json';
 
 // Define a type for the slice state
 interface ProductState {
-    products: Product[]
+    products: Product[],
+    categories: string[],
   }
 
 // interface CounterState {
@@ -17,6 +18,7 @@ interface ProductState {
 // Define the initial state using that type
 const initialState: ProductState = {
     products: data, // this is an array
+    categories: ["Kitchen ware", "games", "foot wear"]
   } //as ProductState
 // const initialState: CounterState = {
 //   value: 0,
