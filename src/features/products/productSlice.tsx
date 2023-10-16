@@ -23,9 +23,6 @@ export const ProductSlice = createSlice({
     addProduct: (state, action: PayloadAction<Product>) => {
       state.products = [...state.products, action.payload]
     },
-    // increment: (state) => {
-    //   state.value += 1
-    // },
     
     deleteProduct: (state, action: PayloadAction<string>) => {
       state.products = state.products.filter((product) => product.id !== action.payload);
