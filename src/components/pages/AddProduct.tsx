@@ -1,13 +1,15 @@
 import { /*ChangeEvent*/ Dispatch,SetStateAction,useState } from "react";
 import {AiFillCloseCircle} from 'react-icons/ai';
-// import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch } from '../../app/hooks';
+import { addProduct } from "../../features/products/productSlice";
 
 type AddProductProps = {
     setShowAddProductForm: Dispatch<SetStateAction<Boolean>>
 };
 
 const AddProduct = ({setShowAddProductForm}: AddProductProps) => {
-    // const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
+
     const[name, setName] = useState<string>('');
     const[image, setImage] = useState<string>('');
     const[price, setPrice] = useState<Number>(0.00);
@@ -26,12 +28,15 @@ const AddProduct = ({setShowAddProductForm}: AddProductProps) => {
 
     const saveProduct = () => {
         const newProduct =  {
+            id: '',
             name,
             image,
             price,
             category,
             stock
-        }
+        };
+
+        dispatch(addProduct(newProduct))
         closeModal();
     }
 
