@@ -144,7 +144,7 @@ header h1 {
 }
 
 
-/*add product page*/
+/*****************add product page****************/
 .add-product {
     position:absolute;
     top:0;
@@ -159,71 +159,62 @@ header h1 {
     min-height: 100vh;  
 }
 
+.add-product input[type=file], .add-product select {
+    /* outline:1px solid red; */
+    width: 60%;
+    border:none;
+}
+
+.add-product select {
+    height: 40px;
+    padding:10px;
+}
+
 .add-product form {
     display:flex;
     flex-direction: column;
     align-items: center;
-    padding:10px;
-    min-width:50%;
+    padding:10px 20px;
+    min-width:fit-content;
     background-color: #fff;
     border-radius:3px;
 }
 
 .add-product form > * {
     margin-bottom:20px;
+    width:100%;
+}
+
+.add-product button[type=submit]{
+    height:40px;
+}
+
+form .header {
+    display:flex;
+    justify-content: space-between;
+    padding: 10px 5px 15px 5px;;
+    border-bottom:1px solid grey;
+    /* outline:1px solid green; */
+}
+
+form label {
+    /* outline:1px solid red; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-product form input {
+    border:none;
+    border-bottom:1px solid grey;
+    padding:5px;
+}
+.add-product form input:focus {
+    outline: none;
 }
 
 
-/* .image-preview {
-    width:55%;
-    height: 500px;
-    border-radius: 2px;
-    background-color: rgba(0, 0,180, 0.2);
 
-} */
 
-/* .form-fields {
-    width: 45%;
-    display:flex;
-    flex-direction: column;
-    height:600px;
-    border-radius:2px;
-    background-color: rgba(180,180,180, 0.2);
-} */
-
-/* .form-fields > * {
-    margin-bottom: 30px;
-} */
-
-/* .form-fields > input {
-    height:40px;
-    padding:10px;
-} */
-
-/* .form-fields input[type=file] {
-    outline:1px solid grey;
-    background-color: #fff;
-} */
-
-/* .form-fields select {
-    outline:1px solid grey;
-    width: 100%;
-    height:35px;
-    background-color: #fff;
-    border:none;
-    border-radius: none;
-    padding:0 15px;
-} */
-
-/* .form-fields button {
-    width:100%;
-    height:40px;
-    color:#fff;
-    background-color: blue;
-    font-weight: bold;
-    border:none;
-    cursor: pointer;
-} */
 
 
 /* delete & edit buttons on product display */

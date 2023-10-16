@@ -1,7 +1,6 @@
 import { /*ChangeEvent*/ Dispatch,SetStateAction } from "react";
-import {AiOutlineSave, AiFillCloseCircle} from 'react-icons/ai';
+import {AiFillCloseCircle} from 'react-icons/ai';
 import { useAppDispatch } from '../../app/hooks';
-
 
 type AddProductProps = {
     setShowAddProductForm: Dispatch<SetStateAction<Boolean>>
@@ -27,21 +26,29 @@ const AddProduct = ({setShowAddProductForm}: AddProductProps) => {
     return (
         <div className="add-product">
             <form>  
-                <div>
+                <div className="header">
                     <h1>Add Product</h1>
                     <AiFillCloseCircle size="2em" onClick={closeModal}/>
-                </div>             
-                <input type="text"  name="name" required maxLength={20} placeholder="Produc name"/>
-                <input type="file" name="image" required accept="image/png, image/jpg, image/gif, image/jpeg"/>
-                <input type="text" name="price" required placeholder="Price"/>
-                <input type="text" name="stock" placeholder="Quantity available" />
+                </div> 
+                <label htmlFor="name">Product Name        
+                    <input id="name" type="text"  name="name" required maxLength={20} placeholder="Produc name"/>
+                </label> 
+                <label htmlFor="image">Upload Image
+                    <input type="file" name="image" required accept="image/png, image/jpg, image/gif, image/jpeg"/>
+                </label>
+                <label htmlFor="price">Price
+                    <input type="text" name="price" required placeholder="Price"/>
+                </label>
+                <label htmlFor="quantity">Quantity
+                    <input type="text" name="stock" placeholder="Quantity available" />
+                </label>
                 <label htmlFor="category">Product category
                     <select name="choice">
                         <option value=""> Select category</option>
                         {categories.length? selectOptions : <option value="">No categories available</option>}
                     </select>
                 </label>
-                <AiOutlineSave size="2em" onClick={saveProduct}/>
+                <button type="submit" onClick={saveProduct}>Save</button>
             </form>
         </div>
     );
