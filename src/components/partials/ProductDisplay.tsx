@@ -1,7 +1,7 @@
 import ProductModel from "../../Model/Product"; 
 import ProductPanel from "./ProductPanel";
 import NoProducts from "./NoProducts";
-import { useAppSelector } from '../../app/hooks';
+import { useAppSelector} from '../../app/hooks';
 
 
 const ProductDisplay = () =>  {
