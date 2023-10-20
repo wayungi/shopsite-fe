@@ -8,6 +8,8 @@ const ProductDisplay = () =>  {
     //fetch all the products from the redux store
     const products: ProductModel[] = useAppSelector((state) => state.products.products);
     let productDisplayList  = null
+
+
     if(products.length > 0){
         productDisplayList = products.map((product, index) => (<div key={index}>
             {

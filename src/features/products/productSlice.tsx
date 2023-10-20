@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, isRejected } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../app/store';
 import type Product from '../../Model/Product';
