@@ -23,8 +23,7 @@ const initialState: ProductState = {
 export const fetchProducts = createAsyncThunk("product/fetchProducts", async () => {
     const res = await fetch(`http://127.0.0.1:3000/product/`);
     if(!res.ok) throw new Error("Could not fetch products");
-    console.log(res.json);
-    return res?.json();
+    return res.json();
 });
 
 export const ProductSlice = createSlice({
