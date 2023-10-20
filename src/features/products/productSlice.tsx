@@ -54,7 +54,7 @@ export const ProductSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.products = [...action.payload];
+        state.products = [...action.payload.products];
       })
       // .addMatcher(isRejected, (state, action) => {
       //   state.isLoading = false;
