@@ -1,3 +1,4 @@
+// import { useEffect } from "react";
 import ProductModel from "../../Model/Product"; 
 import ProductPanel from "./ProductPanel";
 import NoProducts from "./NoProducts";
@@ -8,6 +9,11 @@ const ProductDisplay = () =>  {
     //fetch all the products from the redux store
     const products: ProductModel[] = useAppSelector((state) => state.products.products);
     let productDisplayList  = null
+
+    // useEffect(() => {
+
+
+    // }, [products]) // products is an array as well, so do i spread / use as is??
 
 
     if(products.length > 0){

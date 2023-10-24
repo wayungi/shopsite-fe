@@ -16,8 +16,6 @@ const AddProduct = ({setShowAddProductForm}: AddProductProps) => {
     const[category, setCategory] = useState<string>('Select Category');
     const[stock, setStock] = useState<Number>(0.00);
 
-
-
     // These categories should be loaded from redux
     const categories = ['Kitchen ware', 'games', 'electronics'];
     const selectOptions = categories.map((category, index) => <option key={index} value={category}>{category}</option>);

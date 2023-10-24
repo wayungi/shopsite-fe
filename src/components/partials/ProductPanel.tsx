@@ -5,43 +5,17 @@ import {AiOutlineEdit} from 'react-icons/ai';
 import { useAppDispatch } from '../../app/hooks';
 import { deleteProduct } from "../../features/products/productSlice";
 import EditProduct from "./EditProduct";
-import { updateProduct} from '../../api/products';
-import { editProduct } from '../../features/products/productSlice';
  
 type ProductPanelProps =  {product: Product}
 
 const ProductPanel = ( { product } : ProductPanelProps ) => {
     const {id, name, image, price, category, stock} = product;
 
-    const [editedName, setEditedName] = useState<string| ''>(name);
-    const [editedImage, setEditedImage] = useState<string| ''>(image);
-    const [editedPrice, setEditedPrice] = useState<Number| 0>(price);
-    const [editedCategory, setEditedcategory] = useState<string| ''>(category);
-    const [editedStock, setEditedStock] = useState<Number| ''>(stock);
-
     const [isEditable, setIsEditable] = useState<Boolean>(false);
     const dispatch = useAppDispatch();
     const handleDeleteProduct = () => dispatch(deleteProduct(id));
     const handleEdit = () => setIsEditable(true);
 
-    const saveUpdates = async () => {
-        const editedProduct = {
-            id,
-            name: editedName,
-            image: editedImage,
-            price: +editedPrice,
-            category: editedCategory,
-            stock: +editedStock
-        }
-
-        const result =  await updateProduct(editedProduct);
-        if(!result) return "Product update failed"
-         
-        //if product is update on the server, update the product on the client
-        dispatch(editProduct(result));
-
-    };
-    
     return (
         <article className="product-panel">
             <div><img src={image}  alt={name} /></div>
