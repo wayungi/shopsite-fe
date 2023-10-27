@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../app/store';
-import type Product from '../../Model/Product';
 import data from '../../Model/product.json';
 
 // Define a type for the slice state
@@ -20,15 +19,31 @@ const initialState: ProductState = {
     error: ''
   } //as ProductState
 
+
 export const fetchProducts = createAsyncThunk("product/fetchProducts", async () => {
     const res = await fetch(`http://127.0.0.1:3000/product/`);
     if(!res.ok) throw new Error("Could not fetch products");
     return res.json();
 });
 
+export const addProductAsync = createAsyncThunk("product/addNewProduct", async (productData: ProductData) => {
+  // console.log(productData)
+  // const res =  await fetch('http://127.0.0.1:3000/product', {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": 'application/json',
+  //   },
+  //   body: JSON.stringify(data)
+  // } );
+  // if(!res.ok) throw new Error("Could not add product")
+  // return res.json(); // parses JSON response into native JavaScript objects
+});
+
 export const ProductSlice = createSlice({
   name: 'product',
   initialState,
+
+  //Note: reducers should be pure. ie must not have side efffects & should always return anew object/array/value
   reducers: {
     addProduct: (state, action: PayloadAction<Product>) => {
       state.products = [...state.products, action.payload]
@@ -55,14 +70,16 @@ export const ProductSlice = createSlice({
         state.isLoading = false;
         state.products = [...action.payload.products];
       })
-      // .addMatcher(isRejected, (state, action) => {
-      //   state.isLoading = false;
-      //   state.error = action.payload
-      // })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message
-      })
+      }) //add reduers for adding new product
+      // .addCase(addProductAsync.rejected, (state, action) => {
+      //   state.error = action.error.message
+      // })
+      // .addCase(addProductAsync.fulfilled, (state, action) => {
+      //   state.products = [...state.products, action.payload]
+      // })
   },
 })
 

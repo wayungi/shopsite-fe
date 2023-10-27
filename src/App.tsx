@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 import './App.css'
-import Home from './components/pages/Home';
 import { fetchProducts } from './features/products/productSlice';
 import { useAppDispatch } from './app/hooks';
+import Product from './features/products/Product';
+import NavBar from './components/Nav.tsx/NavBar';
+import Header from './components/Nav.tsx/Header';
+import Layout from './components/Nav.tsx/Layout';
 
 function App() {
 
@@ -14,7 +17,11 @@ function App() {
 
   return (
     <main>
-      <Home />
+        <Header />
+        <Layout>
+          <NavBar />  {/* place to the left, should appear on all admin screens */}
+          <Product />  {/* these will be under the routes */}
+        </Layout>
     </main>
   )
 }
