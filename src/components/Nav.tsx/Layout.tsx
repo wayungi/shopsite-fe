@@ -6,7 +6,7 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   return (
-    <section className="layout">
+    <section className="layout flex">
         {children}
     </section>
   )

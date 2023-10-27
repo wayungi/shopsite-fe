@@ -2,3 +2,52 @@ main {
     min-height: 100vh;
     background-color: aquamarine;
 }
+
+header {
+    height:70px;
+    border:1px solid red;
+    justify-content: center;
+}
+
+header > div {
+    width:80%;
+    border:1px solid red;
+    align-items: center;
+}
+
+header .logo {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1.5em;
+    padding: 0 10px;
+}
+
+.dropdown {
+    position:relative;
+    display:inline-block;
+}
+
+.dropdown-options {
+    display:none;
+    position:absolute;
+    overflow: auto;
+}
+
+.dropdown:hover .dropdown-options {
+    display: block;
+  }
+  
+
+.layout {
+    
+}
+
+/* utility classes */
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
