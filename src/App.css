@@ -51,6 +51,23 @@ header form button {
 .dropdown {
     position:relative;
     display:inline-block;
+    margin-right:10px;
+}
+
+.dropdown > div {
+    padding: 0 10px;
+    align-items: center;
+    border-radius:5px;
+    background-color: grey;
+    height:40px;
+
+}
+
+.dropdown > div h3 {
+    text-transform: capitalize;
+    font-size: 1.5em;
+    font-weight: 300;
+    padding: 0 10px;
 }
 
 .dropdown-options {
