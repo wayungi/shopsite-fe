@@ -22,6 +22,24 @@ header .logo {
     padding: 0 10px;
 }
 
+header form {
+    /* outline:1px solid red; */
+}
+
+header form input {
+    width: 360px;
+    padding:10px;
+    height:40px;
+    font-size: 1.5em;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid grey;
+    border-right:none;
+}
+
+header form input:focus {
+    outline:none;
+}
+
 .dropdown {
     position:relative;
     display:inline-block;
