@@ -23,7 +23,8 @@ header .logo {
 }
 
 header form {
-    /* outline:1px solid red; */
+    margin-right: 10px;
+    
 }
 
 header form input {
@@ -38,6 +39,13 @@ header form input {
 
 header form input:focus {
     outline:none;
+}
+
+header form button {
+    height:40px;
+    width: 100px;
+    border-radius: 0 5px 5px 0;
+    border: 1px solid grey;
 }
 
 .dropdown {

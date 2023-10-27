@@ -3,9 +3,9 @@ import './App.css'
 import { fetchProducts } from './features/products/productSlice';
 import { useAppDispatch } from './app/hooks';
 import Product from './features/products/Product';
-import NavBar from './components/Nav.tsx/NavBar';
-import Header from './components/Nav.tsx/Header';
-import Layout from './components/Nav.tsx/Layout';
+import NavBar from './components/NavBar';
+import Header from './components/Header';
+import Layout from './components/Layout';
 
 function App() {
 
