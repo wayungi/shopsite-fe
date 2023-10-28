@@ -2,6 +2,8 @@ import {CiDeliveryTruck} from 'react-icons/ci';
 import {GoPackageDependencies, GoPackageDependents} from 'react-icons/go';
 import { BiStore } from 'react-icons/bi'
 import {FaShopify} from 'react-icons/fa';
+import {AiOutlineShoppingCart} from 'react-icons/ai';
+
 
 
 const NavBar = () => {
@@ -13,6 +15,7 @@ const NavBar = () => {
             <li>Product Managements <BiStore size="2em"/></li>
             <li>View Orders <GoPackageDependencies size="2em" /></li> {/* can cancel orders too*/}
             <li>View dispatched Orders <GoPackageDependents size="2em" /></li>
+            <li>Cart <AiOutlineShoppingCart size="2em" /></li>
         </ul>
     </aside>
   )
