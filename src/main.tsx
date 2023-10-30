@@ -9,12 +9,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ErrorPage from './components/ErrorPage.tsx';
-// pages
 import Product from './features/products/Product';
 import AddNewProduct from './features/products/AddNewProduct';;
-// import Cart from './features/products/Cart';
-// import Orders from './features/products/Orders';
-// import ProductManagement from './features/products/ProductManagement';
+import Cart from './features/products/Cart';
+import Orders from './features/products/Orders';
+import ProductManagement from './features/products/ProductManagement';
 
 
 const router = createBrowserRouter([
@@ -23,13 +22,22 @@ const router = createBrowserRouter([
     element:  <App />, //root route, all other routes will render inside of it, it is also the root layout
     errorElement: <ErrorPage />,
     children: [
-      {
-        path: "/product",
-        element: <Product />
-      },
+      { index: true, element: <Product /> }, // this path will be displayed whne the root path is matched exactly
       {
         path: "/new",
         element: <AddNewProduct />
+      },
+      {
+        path: "/cart",
+        element: <Cart />
+      },
+      {
+        path: "/orders",
+        element: <Orders />
+      },
+      {
+        path: "/management",
+        element: <ProductManagement />
       }
     ]
   },
@@ -39,8 +47,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
-    <RouterProvider router={router} />
-      {/* <App /> */}
+      <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>,
 )

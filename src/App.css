@@ -113,15 +113,29 @@ aside.admin-nav {
 }
 
 .admin-menu-items li {
+    list-style: none;
+    border-bottom:1px solid grey;
+}
+
+.admin-menu-items li a, .admin-menu-items li {
     display:flex;
     justify-content: space-between;
     align-items: center;
-    list-style: none;
     height:50px;
     width:100%;
-    border-bottom:1px solid grey;
-
+    text-decoration: none;
+    color: black;
 }
+.admin-menu-items li a {
+    padding: 0 10px;
+}
+
+.admin-menu-items li a:hover {
+    background-color: aliceblue;
+}
+
+
+
 
 /* utility classes */
 .flex {
