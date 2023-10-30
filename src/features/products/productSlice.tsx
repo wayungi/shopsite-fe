@@ -1,32 +1,31 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../app/store';
-import data from '../../Model/product.json';
 
 // Define a type for the slice state
 interface ProductState {
     products: Product[],
     categories: string[],
-    isLoading: boolean,
-    error: string | undefined, // this was string | null but ive been face with an error in the extrareducers, so i changed it to sting | undefiend
+    status: 'idle' | 'loading' | 'succeeded' | 'failed'
+    error: string | undefined, // this was string | null but ive been faced with an error in the extrareducers, so i changed it to sting | undefiend
   }
 
 // Define the initial state using that type
 const initialState: ProductState = {
-    products: data, // this is an array
+    products: [],
     categories: ["Kitchen ware", "games", "foot wear"],
-    isLoading: false,
+    status: "idle",
     error: ''
   } //as ProductState
 
 
-export const fetchProducts = createAsyncThunk("product/fetchProducts", async () => {
+export const fetchProducts = createAsyncThunk("products/fetchProducts", async () => {
     const res = await fetch(`http://127.0.0.1:3000/product/`);
-    if(!res.ok) throw new Error("Could not fetch products");
-    return res.json();
+    if(!res.ok) throw new Error("Product download failed: Please refresh the application")
+    return res.json(); 
 });
 
-export const addProductAsync = createAsyncThunk("product/addNewProduct", async (productData: ProductData) => {
+export const addProductAsync = createAsyncThunk("products/addNewProduct", async (productData: ProductData) => {
   // console.log(productData)
   // const res =  await fetch('http://127.0.0.1:3000/product', {
   //   method: "POST",
@@ -40,10 +39,8 @@ export const addProductAsync = createAsyncThunk("product/addNewProduct", async (
 });
 
 export const ProductSlice = createSlice({
-  name: 'product',
+  name: 'products',
   initialState,
-
-  //Note: reducers should be pure. ie must not have side efffects & should always return anew object/array/value
   reducers: {
     addProduct: (state, action: PayloadAction<Product>) => {
       state.products = [...state.products, action.payload]
@@ -64,25 +61,19 @@ export const ProductSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
-        state.isLoading = true
+        state.status = "loading"
+
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.status = "succeeded";
         state.products = [...action.payload.products];
       })
       .addCase(fetchProducts.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message
-      }) //add reduers for adding new product
-      // .addCase(addProductAsync.rejected, (state, action) => {
-      //   state.error = action.error.message
-      // })
-      // .addCase(addProductAsync.fulfilled, (state, action) => {
-      //   state.products = [...state.products, action.payload]
-      // })
+        state.error = action.error.message;
+      })
   },
 })
 
-export const { addProduct, deleteProduct, editProduct } = ProductSlice.actions
-export const selectProducts = (state: RootState) => state.products.products
-export default ProductSlice.reducer
+export const { addProduct, deleteProduct, editProduct } = ProductSlice.actions;
+export const selectProducts = (state: RootState) => state.products.products;
+export default ProductSlice.reducer;

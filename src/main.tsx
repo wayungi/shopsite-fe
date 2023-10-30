@@ -14,6 +14,11 @@ import AddNewProduct from './features/products/AddNewProduct';;
 import Cart from './features/products/Cart';
 import Orders from './features/products/Orders';
 import ProductManagement from './features/products/ProductManagement';
+import { fetchProducts } from './features/products/productSlice.tsx';
+// import { useAppDispatch } from './app/hooks.tsx';
+
+//load the product data only once when the application starts
+store.dispatch(fetchProducts())
 
 
 const router = createBrowserRouter([
