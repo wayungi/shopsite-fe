@@ -1,18 +1,11 @@
 type Product = {
-    "id": string, 
+    "_id": string, 
     "name": string,
     "image": string,
     "price": Number,
     "category": string,
     "stock": Number,
-};
-
-type ProductData = {
-    "name": string,
-    // "image": string,
-    "price": Number,
-    "category": string,
-    "stock": Number,
+    "__v": Number
 }
 
-// export default Product;
+export default Product;
