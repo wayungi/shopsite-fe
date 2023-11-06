@@ -1,11 +1,18 @@
 import './App.css'
-import Home from './components/pages/Home'
+import NavBar from './components/NavBar';
+import Header from './components/Header';
+import Layout from './components/Layout';
+import { Outlet } from 'react-router-dom';
 
 function App() {
-
+  
   return (
     <main>
-      <Home />
+        <Header />
+        <Layout>
+          <NavBar />  {/* place to the left, should appear on all admin screens */}
+          <Outlet />
+        </Layout>
     </main>
   )
 }
