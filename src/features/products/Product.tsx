@@ -14,10 +14,11 @@ const Product = () => {
         <div className="item-image">
           <img src={product.image} alt={product.name} />
         </div>
-        <h3>{product.name}</h3>
-        <h4>{product.price.toString()}</h4>
-        <h4>{product.category}</h4>
-        <h4>Quantity available: {product.stock.toString()}</h4>
+        <h3 className="item-desc">{product.name}</h3>
+        <h4 className="item-desc"> UGX: {product.price.toString()}</h4>
+        <h4 className="item-desc">{product.category}</h4>
+        <h4 className="item-desc">Quantity available: {product.stock.toString()}</h4>
+        <button className="add-to-cart">Add to Cart</button>
       </article>
     ))
   }
