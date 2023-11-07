@@ -1,15 +1,20 @@
 import { selectProducts } from "./productSlice"
 import { useAppSelector } from "../../app/hooks"
 import { ReactNode } from "react";
+import { useOutletContext } from "react-router-dom";
+
 
 const Product = () => {
   const status = useAppSelector(state => state.products.status);
   const products =  useAppSelector(state => selectProducts(state));
-  let content: ReactNode = '';
+  let content: (ReactNode | null) = null;
+  const filterValue: string = useOutletContext();
 
   // refactor this into another component
   if(status === "succeeded") {
-    content = products.map((product) => (
+    const filteredProducts = products.filter((product) => product.name.includes(filterValue)|| product.category.includes(filterValue));
+    content = filteredProducts.map((product) => (
+      // Refactor this artcile into a component
       <article className="product-panel" key={product._id} >
         <div className="item-image">
           <img src={product.image} alt={product.name} />

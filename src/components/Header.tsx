@@ -1,15 +1,32 @@
+import {useState} from 'react';
 import {AiOutlineUser, AiOutlineShoppingCart} from 'react-icons/ai';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 
+interface HeaderProps {
+  setFilterValue: (value: string) => void
+}
 
+const Header = ({ setFilterValue }: HeaderProps) => {
+  const [search, setSearch] =  useState<string>('');
 
-const Header = () => {
+  const handleSearch = (value: string) => {
+    setSearch(value);
+    setFilterValue(value);
+  }
+
   return (
     <header className="flex">
         <div className="flex">
             <a className="logo">shopsite</a>
             <form className="flex">
-                <input type='text' placeholder='Search' aria-label="search field"></input>
+                <input 
+                  type='text'
+                  placeholder='Search'
+                  aria-label="search field"
+                  value={search}
+                  onChange={(e) => handleSearch(e.target.value.toLowerCase())}
+                  />
+                  
                 <button type='button'>Search</button>
             </form>
             <div className="dropdown">
