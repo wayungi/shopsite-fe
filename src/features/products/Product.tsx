@@ -2,6 +2,7 @@ import { selectProducts } from "./productSlice"
 import { useAppSelector } from "../../app/hooks"
 import { ReactNode } from "react";
 
+
 const Product = () => {
   const status = useAppSelector(state => state.products.status);
   const products =  useAppSelector(state => selectProducts(state));

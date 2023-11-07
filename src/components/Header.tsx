@@ -1,15 +1,23 @@
+import {useState} from 'react';
 import {AiOutlineUser, AiOutlineShoppingCart} from 'react-icons/ai';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 
-
-
 const Header = () => {
+  const [search, setSearch] =  useState<string>('');
+
   return (
     <header className="flex">
         <div className="flex">
             <a className="logo">shopsite</a>
             <form className="flex">
-                <input type='text' placeholder='Search' aria-label="search field"></input>
+                <input 
+                  type='text'
+                  placeholder='Search'
+                  aria-label="search field"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  />
+                  
                 <button type='button'>Search</button>
             </form>
             <div className="dropdown">
