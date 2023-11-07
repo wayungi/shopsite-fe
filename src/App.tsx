@@ -8,15 +8,13 @@ import { Outlet } from 'react-router-dom';
 
 
 function App() {
-
   const [filterValue, setFilterValue] =  useState<string>('');
-
   return (
     <main>
         <Header setFilterValue={setFilterValue} />
         <Layout>
-          <NavBar />  {/* place to the left, should appear on all admin screens */}
-          <Outlet/>
+          <NavBar />  {/* placed to the left, should appear on all admin screens */}
+          <Outlet context={filterValue}/>
         </Layout>
     </main>
   )

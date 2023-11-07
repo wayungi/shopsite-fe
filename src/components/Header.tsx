@@ -24,7 +24,7 @@ const Header = ({ setFilterValue }: HeaderProps) => {
                   placeholder='Search'
                   aria-label="search field"
                   value={search}
-                  onChange={(e) => handleSearch(e.target.value)}
+                  onChange={(e) => handleSearch(e.target.value.toLowerCase())}
                   />
                   
                 <button type='button'>Search</button>
