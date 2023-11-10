@@ -205,5 +205,20 @@ div.item-image {
     text-transform: capitalize;
 }
 
+/* add product form */
 
+section.add-product {
+    padding: 5px;
+    align-items: center;
+    width: 100%;
+    outline: 1px solid red;
+}
+
+.add-product form label {
+    margin-top: 20px;
+}
+
+.add-product form button {
+    margin: 20px 0;
+}
 

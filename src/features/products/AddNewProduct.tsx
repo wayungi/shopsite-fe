@@ -29,9 +29,9 @@ const AddNewProduct = () => {
   }
 
   return (
-    <section>
+    <section className="add-product flex-col">
       <div>AddNewProduct</div>
-      <form>
+      <form className="flex-col">
           <label htmlFor="product-name">
             <span>Product Name</span>
             <input id="product-name"
