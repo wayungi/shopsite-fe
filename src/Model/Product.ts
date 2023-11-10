@@ -1,4 +1,4 @@
-git type Product = {
+type Product = {
     "_id": string, 
     "name": string,
     "image": string,
