@@ -43,10 +43,7 @@ export const postProduct = createAsyncThunk("products/postProducts", async(produ
     body: JSON.stringify(product),
   });
   if(!res.ok) throw new Error("Product could not be saved, Please try gain")
-  // const newProduct =  await res.json();
-  console.log(res.json());
-  return res.json();
-  //return newProduct;
+  return await res.json();
 });
 
 export const ProductSlice = createSlice({
@@ -83,6 +80,9 @@ export const ProductSlice = createSlice({
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.error = action.error.message;
+      })
+      .addCase(postProduct.fulfilled, (state, action) => {
+        state.products = [...state.products, action.payload.result]
       })
   },
 })
