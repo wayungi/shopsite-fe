@@ -10,6 +10,14 @@ interface ProductState {
     error: string | undefined,
   }
 
+type ProductData = {
+  name: string,
+  image: string,
+  price: string,
+  category: string,
+  stock: string
+}
+
 const initialState: ProductState = {
     products: [],
     categories: ["Kitchen ware", "games", "foot wear"],
@@ -22,6 +30,23 @@ export const fetchProducts = createAsyncThunk("products/fetchProducts", async ()
     const res = await fetch(`http://127.0.0.1:3000/product/`);
     if(!res.ok) throw new Error("Product download failed: Please refresh the application")
     return res.json(); 
+});
+
+export const postProduct = createAsyncThunk("products/postProducts", async(productData: ProductData) => {
+  const product = {...productData, price: +productData.price, stock: +productData.stock, }
+  console.log(product);
+  const res =  await fetch(`http://127.0.0.1:3000/product/`, {
+    method: "POST", 
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(product),
+  });
+  if(!res.ok) throw new Error("Product could not be saved, Please try gain")
+  // const newProduct =  await res.json();
+  console.log(res.json());
+  return res.json();
+  //return newProduct;
 });
 
 export const ProductSlice = createSlice({

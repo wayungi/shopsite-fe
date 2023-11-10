@@ -1,35 +1,41 @@
-import { useState, ChangeEvent, FormEvent } from 'react'
+import { useState, FormEvent, ReactNode } from 'react';
+import { postProduct } from './productSlice';
+import { useAppDispatch } from '../../app/hooks';
+
 // tenporarly import, data will come from database
 import options from '../../Model/optons';
 
 const AddNewProduct = () => {
+
+  const dispatch =  useAppDispatch();
   const [name, setName] = useState<string>('');
-  const [path, setPath] = useState<string>('');
+  const [image, setImage] = useState<string>('');
   const [price, setPrice] = useState<string>('');
   const [category, setCatgeory] = useState<string>('');
-  const [stock, setStock] = useState<number | ''>('');
-  const [hasErrors, sethasError] = useState<boolean>( false);
-
-  const handleStock = (e: ChangeEvent<HTMLInputElement>) => { 
-    const stock = e.target.value
-    if(!parseInt(stock)) return; // what is returned at this point ??
-    setStock(+stock);
-  }
+  const [stock, setStock] = useState<string>('');
+  const [hasErrors, setHasError] = useState<boolean>(false);
+  const errors: string[] = [];
+  let errorMessages: (ReactNode | null) = null;
 
   const handleFormSubmission = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const isformFilled = [name, path, price, stock].every(item => item !== '')
-    if (!isformFilled) {
-      sethasError(true);
-      return ;
+    setHasError(false) // reset to false just incase it was set to true on the first run
+    const isformFilled = [name, image].every(item => item !== '')
+    const isValidNumber = [price, stock].every(item => Number(item));
+
+    if (!isformFilled || !isValidNumber) {
+      if(!isformFilled) errors.push("Name & image fields must be filled");
+      if (!isValidNumber) errors.push("Price and Stock must be number fields");
+      console.log(errors)
+      setHasError(true);
+      return;
     };
     
-    console.log(name)
-    console.log(path)
-    console.log(price)
-    console.log(category)
-    console.log(stock)
+    dispatch(postProduct({name, image, price, category, stock}))
+  }
 
+  if(hasErrors){
+    errorMessages = errors.map((err, index) => (<p key={index}>{err}</p>));
   }
 
   return (
@@ -47,8 +53,8 @@ const AddNewProduct = () => {
           <label htmlFor="product-image">
             <span>Product Image</span>
             <input type="file" id="product-image"
-              value={path}
-              onChange={ (e) => setPath(e.target.value) }
+              value={image}
+              onChange={ (e) => setImage(e.target.value) }
               required />
           </label>
 
@@ -73,11 +79,12 @@ const AddNewProduct = () => {
             <input 
               type="number"
               value={stock}
-              onChange = {handleStock}
+              onChange = {(e) => setStock(e.target.value)}
               required /> 
           </label>
           <button type="submit">Add</button>
-          <p>{ hasErrors ? "Please fill in all fields" : null }</p>
+          {/* error message is not displayed on screen */}
+          { errorMessages }
       </form>
     </section>
   )
