@@ -12,7 +12,7 @@ interface ProductState {
 
 type ProductData = {
   name: string,
-  image: string,
+  serverImagePath: string,
   price: string,
   category: string,
   stock: string
@@ -34,7 +34,7 @@ export const fetchProducts = createAsyncThunk("products/fetchProducts", async ()
 
 export const postProduct = createAsyncThunk("products/postProducts", async(productData: ProductData) => {
   const product = {...productData, price: +productData.price, stock: +productData.stock, }
-  // console.log(product);
+  console.log(product);
   const res =  await fetch(`http://127.0.0.1:3000/product/`, {
     method: "POST", 
     headers: {

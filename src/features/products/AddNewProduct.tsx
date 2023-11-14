@@ -14,32 +14,31 @@ const AddNewProduct = () => {
   
   const dispatch =  useAppDispatch();
   const [name, setName] = useState<string>('');
-  const [image, setImage] = useState<string>('');
+  const [localImagePath, setLocalImagePath] = useState<string>('');
   const [price, setPrice] = useState<string>('');
   const [category, setCatgeory] = useState<string>('');
   const [stock, setStock] = useState<string>('');
   const [hasErrors, setHasError] = useState<boolean>(false);
   const [file, setFile] = useState<File | undefined>();
+  const [serverImagePath, setServerImagePath] = useState<string>('');
 
   const errors: string[] = [];
   let errorMessages: (ReactNode | null) = null;
 
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    setImage(event.target.value);
+    setLocalImagePath(event.target.value);
     setFile(event.target.files?.[0]);
   }
 
   const handleFormSubmission = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setHasError(false) // reset to false just incase it was set to true on the first run
-    // const isformFilled = [name, image].every(item => item !== '')
-    const isformFilled = [name, file].every(item => item !== '')
+    const isformFilled = [name, file, localImagePath].every(item => item !== '')
     const isValidNumber = [price, stock].every(item => Number(item));
 
     if (!isformFilled || !isValidNumber) {
       if(!isformFilled) errors.push("Name & image fields must be filled");
       if (!isValidNumber) errors.push("Price and Stock must be number fields");
-      // console.log(errors)
       setHasError(true);
       return;
     };
@@ -49,16 +48,12 @@ const AddNewProduct = () => {
       const formData =  new FormData();
       formData.append('file', file);
       formData.append('upload_preset', PRESET_KEY);
-
-      // console.log(file);
-      console.log(formData)
-
       axios.post(URL, formData)
-      .then(res => console.log(res.data.secure_url))
+      .then(res => {
+        setServerImagePath(res.data.secure_url);
+        dispatch(postProduct({name, serverImagePath, price, category, stock}))
+      })
       .catch(err => console.log(err.request));
-
-      //console.log(image);
-      // dispatch(postProduct({name, image, price, category, stock}))
     }
     
    
@@ -83,7 +78,7 @@ const AddNewProduct = () => {
           <label htmlFor="product-image">
             <span>Product Image</span>
             <input type="file" id="product-image"
-              value={image}
+              value={localImagePath}
               onChange={handleImageUpload }
               required />
           </label>
