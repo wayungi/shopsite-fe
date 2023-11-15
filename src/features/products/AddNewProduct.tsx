@@ -3,7 +3,7 @@ import { postProduct } from './productSlice';
 import { useAppDispatch } from '../../app/hooks';
 import axios from 'axios';
 
-// tenporarly import, data will come from database
+// temporarly import, data will come from database
 import options from '../../Model/optons';
 
 const AddNewProduct = () => {
@@ -11,7 +11,6 @@ const AddNewProduct = () => {
   const PRESET_KEY="jwkui3nn";
   const CLOUD_NAME = "ddwvtbyfm";
   const URL =  `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
-  
   const dispatch =  useAppDispatch();
   const [name, setName] = useState<string>('');
   const [localImagePath, setLocalImagePath] = useState<string>('');
@@ -21,7 +20,6 @@ const AddNewProduct = () => {
   const [hasErrors, setHasError] = useState<boolean>(false);
   const [file, setFile] = useState<File | undefined>();
   const [serverImagePath, setServerImagePath] = useState<string>('');
-
   const errors: string[] = [];
   let errorMessages: (ReactNode | null) = null;
 
@@ -51,12 +49,11 @@ const AddNewProduct = () => {
       axios.post(URL, formData)
       .then(res => {
         setServerImagePath(res.data.secure_url);
+        console.log(res.data.secure_url)
         dispatch(postProduct({name, serverImagePath, price, category, stock}))
       })
       .catch(err => console.log(err.request));
     }
-    
-   
   }
 
   if(hasErrors){

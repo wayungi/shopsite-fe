@@ -211,7 +211,6 @@ section.add-product {
     padding: 5px;
     align-items: center;
     width: 100%;
-    outline: 1px solid red;
 }
 
 .add-product form label {
