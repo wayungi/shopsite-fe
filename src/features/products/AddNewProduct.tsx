@@ -59,7 +59,6 @@ const AddNewProduct = () => {
       axios.post(API, formData)
       .then(res => {
         setServerImagePath(res.data.secure_url);
-        console.log(res.data.secure_url)
         dispatch(postProduct({name, serverImagePath, price, category, stock}))
       })
       .catch(err => console.log(err.request));
@@ -72,55 +71,52 @@ const AddNewProduct = () => {
 
   return (
     <section className="add-product flex-col">
-      <div>AddNewProduct</div>
-      <section>
-        { file && <img src={URL.createObjectURL(preview)} />}
-      </section>
-      <form className="flex-col" method="POST" onSubmit={handleFormSubmission}>
-          <label htmlFor="product-name">
-            <span>Product Name</span>
+      
+      <div className="form-parts">
+        <section className="image-preview">
+          { file && <img src={URL.createObjectURL(preview)} /> || <p className="preview-text">Image preview</p>}
+        </section>
+
+        <form className="flex-col new-product-form" method="POST" onSubmit={handleFormSubmission}>
+            <label htmlFor="product-name">Name</label>
             <input id="product-name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              required />
-          </label>
+              required
+            />
 
-          <label htmlFor="product-image">
-            <span>Product Image</span>
+            <label htmlFor="product-image">Upload picture</label>
             <input type="file" id="product-image"
               value={localImagePath}
               onChange={handleImageUpload }
-              required />
-          </label>
+              required 
+            />
 
-          <label htmlFor="product-price">
-            <span>Price</span>
+            <label htmlFor="product-price">Price</label>
             <input id="product-price"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              required />
-          </label>
+              required 
+            />
 
-          <label htmlFor="product-category">
-            <span>Catgeory</span>
+            <label htmlFor="product-category">Select catgeory</label>
             <select onChange={(e) => setCatgeory(e.target.value)}>
               <option value="">Select category</option>
               {options.map((option, index) => <option value={option} key={index}>{option}</option>)}
             </select>
-          </label>
 
-          <label htmlFor="stock">
-            <span>Quantity available</span>
+            <label htmlFor="stock">Quantity available</label>
             <input 
-              type="number"
               value={stock}
               onChange = {(e) => setStock(e.target.value)}
-              required /> 
-          </label>
-          <button type="submit">Add</button>
-          {/* error message is not displayed on screen */}
-          { errorMessages }
-      </form>
+              required
+            /> 
+           
+            <button type="submit">Save</button>
+            {/* error message is not displayed on screen */}
+            { errorMessages }
+        </form>
+      </div>
     </section>
   )
 }

@@ -211,6 +211,9 @@ section.add-product {
     padding: 5px;
     align-items: center;
     width: 100%;
+
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .add-product form label {
@@ -221,3 +224,70 @@ section.add-product {
     margin: 20px 0;
 }
 
+/* image preview */
+.image-preview {
+    outline: 1px solid grey;
+    width:450px;
+    height:450px;
+    margin-right:20px;
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+p.preview-text {
+    font-weight: bold;
+    font-size: 3em;
+    color:rgba(120, 120, 120, .5);
+}
+
+.image-preview img {
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+}
+
+div.form-parts {
+    outline:1px solid green;
+    display: flex;
+    padding:10px;
+}
+
+form.new-product-form {
+    outline:1px solid pink;
+    padding:20px;
+}
+
+form.new-product-form label{
+    font-size:1.5em;
+}
+
+form.new-product-form input {
+    width: 300px;
+    border: none;
+    border-bottom:1px solid rgba(120, 120, 120, 0.4);
+    height: 30px;
+    font-size:1.5em;
+}
+
+form.new-product-form input:focus {
+    outline:none;
+    border-bottom: 1px solid purple;
+}
+
+form.new-product-form select {
+    height:30px;
+    padding: 0 10px;
+    border-radius:0;
+    border: 1px solid rgba(120, 120, 120, .5);
+}
+
+form.new-product-form button {
+    height:30px;
+    width:100px;
+    border-radius:0;
+    border: 1px solid rgba(120, 120, 120, .5);
+    margin: auto;
+    margin-top: 20px;
+}
