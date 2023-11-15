@@ -1,4 +1,4 @@
-import { useState, FormEvent, ReactNode, ChangeEvent } from 'react';
+import { useState, FormEvent, ReactNode, ChangeEvent, useEffect } from 'react';
 import { postProduct } from './productSlice';
 import { useAppDispatch } from '../../app/hooks';
 import axios from 'axios';
@@ -10,7 +10,7 @@ const AddNewProduct = () => {
 
   const PRESET_KEY="jwkui3nn";
   const CLOUD_NAME = "ddwvtbyfm";
-  const URL =  `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+  const API =  `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
   const dispatch =  useAppDispatch();
   const [name, setName] = useState<string>('');
   const [localImagePath, setLocalImagePath] = useState<string>('');
@@ -22,9 +22,19 @@ const AddNewProduct = () => {
   const [serverImagePath, setServerImagePath] = useState<string>('');
   const errors: string[] = [];
   let errorMessages: (ReactNode | null) = null;
+  const [preview, setPreview] = useState<Blob | MediaSource > (new File(["default"], "default.png"));
+
+  useEffect(() => {
+    if(file !== undefined){
+      setPreview(file)
+    }
+    
+    // free memory when ever this component is unmounted
+    // return () => URL.revokeObjectURL(objectUrl)      
+ }, [file])
 
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    setLocalImagePath(event.target.value);
+    setLocalImagePath(event.target.value); 
     setFile(event.target.files?.[0]);
   }
 
@@ -46,7 +56,7 @@ const AddNewProduct = () => {
       const formData =  new FormData();
       formData.append('file', file);
       formData.append('upload_preset', PRESET_KEY);
-      axios.post(URL, formData)
+      axios.post(API, formData)
       .then(res => {
         setServerImagePath(res.data.secure_url);
         console.log(res.data.secure_url)
@@ -63,6 +73,9 @@ const AddNewProduct = () => {
   return (
     <section className="add-product flex-col">
       <div>AddNewProduct</div>
+      <section>
+        { file && <img src={URL.createObjectURL(preview)} />}
+      </section>
       <form className="flex-col" method="POST" onSubmit={handleFormSubmission}>
           <label htmlFor="product-name">
             <span>Product Name</span>
