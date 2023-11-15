@@ -1,37 +1,62 @@
-import { useState, FormEvent, ReactNode } from 'react';
+import { useState, FormEvent, ReactNode, ChangeEvent } from 'react';
 import { postProduct } from './productSlice';
 import { useAppDispatch } from '../../app/hooks';
+import axios from 'axios';
 
 // tenporarly import, data will come from database
 import options from '../../Model/optons';
 
 const AddNewProduct = () => {
 
+  const PRESET_KEY="jwkui3nn";
+  const CLOUD_NAME = "ddwvtbyfm";
+  const URL =  `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+  
   const dispatch =  useAppDispatch();
   const [name, setName] = useState<string>('');
-  const [image, setImage] = useState<string>('');
+  const [localImagePath, setLocalImagePath] = useState<string>('');
   const [price, setPrice] = useState<string>('');
   const [category, setCatgeory] = useState<string>('');
   const [stock, setStock] = useState<string>('');
   const [hasErrors, setHasError] = useState<boolean>(false);
+  const [file, setFile] = useState<File | undefined>();
+  const [serverImagePath, setServerImagePath] = useState<string>('');
+
   const errors: string[] = [];
   let errorMessages: (ReactNode | null) = null;
+
+  const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
+    setLocalImagePath(event.target.value);
+    setFile(event.target.files?.[0]);
+  }
 
   const handleFormSubmission = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setHasError(false) // reset to false just incase it was set to true on the first run
-    const isformFilled = [name, image].every(item => item !== '')
+    const isformFilled = [name, file, localImagePath].every(item => item !== '')
     const isValidNumber = [price, stock].every(item => Number(item));
 
     if (!isformFilled || !isValidNumber) {
       if(!isformFilled) errors.push("Name & image fields must be filled");
       if (!isValidNumber) errors.push("Price and Stock must be number fields");
-      console.log(errors)
       setHasError(true);
       return;
     };
+
+    //upload the image to cloudinary and return the image path
+    if(file !== undefined) {
+      const formData =  new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', PRESET_KEY);
+      axios.post(URL, formData)
+      .then(res => {
+        setServerImagePath(res.data.secure_url);
+        dispatch(postProduct({name, serverImagePath, price, category, stock}))
+      })
+      .catch(err => console.log(err.request));
+    }
     
-    dispatch(postProduct({name, image, price, category, stock}))
+   
   }
 
   if(hasErrors){
@@ -53,8 +78,8 @@ const AddNewProduct = () => {
           <label htmlFor="product-image">
             <span>Product Image</span>
             <input type="file" id="product-image"
-              value={image}
-              onChange={ (e) => setImage(e.target.value) }
+              value={localImagePath}
+              onChange={handleImageUpload }
               required />
           </label>
 

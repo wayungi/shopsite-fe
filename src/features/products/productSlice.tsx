@@ -12,7 +12,7 @@ interface ProductState {
 
 type ProductData = {
   name: string,
-  image: string,
+  serverImagePath: string,
   price: string,
   category: string,
   stock: string
