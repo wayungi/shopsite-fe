@@ -1,17 +1,16 @@
-import { useState, FormEvent, ReactNode, ChangeEvent } from 'react';
+import { useState, FormEvent, ReactNode, ChangeEvent, useEffect } from 'react';
 import { postProduct } from './productSlice';
 import { useAppDispatch } from '../../app/hooks';
 import axios from 'axios';
 
-// tenporarly import, data will come from database
+// temporarly import, data will come from database
 import options from '../../Model/optons';
 
 const AddNewProduct = () => {
 
   const PRESET_KEY="jwkui3nn";
   const CLOUD_NAME = "ddwvtbyfm";
-  const URL =  `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
-  
+  const API =  `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
   const dispatch =  useAppDispatch();
   const [name, setName] = useState<string>('');
   const [localImagePath, setLocalImagePath] = useState<string>('');
@@ -21,12 +20,21 @@ const AddNewProduct = () => {
   const [hasErrors, setHasError] = useState<boolean>(false);
   const [file, setFile] = useState<File | undefined>();
   const [serverImagePath, setServerImagePath] = useState<string>('');
-
   const errors: string[] = [];
   let errorMessages: (ReactNode | null) = null;
+  const [preview, setPreview] = useState<Blob | MediaSource > (new File(["default"], "default.png"));
+
+  useEffect(() => {
+    if(file !== undefined){
+      setPreview(file)
+    }
+    
+    // free memory when ever this component is unmounted
+    // return () => URL.revokeObjectURL(objectUrl)      
+ }, [file])
 
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    setLocalImagePath(event.target.value);
+    setLocalImagePath(event.target.value); 
     setFile(event.target.files?.[0]);
   }
 
@@ -48,15 +56,13 @@ const AddNewProduct = () => {
       const formData =  new FormData();
       formData.append('file', file);
       formData.append('upload_preset', PRESET_KEY);
-      axios.post(URL, formData)
+      axios.post(API, formData)
       .then(res => {
         setServerImagePath(res.data.secure_url);
         dispatch(postProduct({name, serverImagePath, price, category, stock}))
       })
       .catch(err => console.log(err.request));
     }
-    
-   
   }
 
   if(hasErrors){
@@ -65,52 +71,52 @@ const AddNewProduct = () => {
 
   return (
     <section className="add-product flex-col">
-      <div>AddNewProduct</div>
-      <form className="flex-col" method="POST" onSubmit={handleFormSubmission}>
-          <label htmlFor="product-name">
-            <span>Product Name</span>
+      
+      <div className="form-parts">
+        <section className="image-preview">
+          { file && <img src={URL.createObjectURL(preview)} /> || <p className="preview-text">Image preview</p>}
+        </section>
+
+        <form className="flex-col new-product-form" method="POST" onSubmit={handleFormSubmission}>
+            <label htmlFor="product-name">Name</label>
             <input id="product-name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              required />
-          </label>
+              required
+            />
 
-          <label htmlFor="product-image">
-            <span>Product Image</span>
+            <label htmlFor="product-image">Upload picture</label>
             <input type="file" id="product-image"
               value={localImagePath}
               onChange={handleImageUpload }
-              required />
-          </label>
+              required 
+            />
 
-          <label htmlFor="product-price">
-            <span>Price</span>
+            <label htmlFor="product-price">Price</label>
             <input id="product-price"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              required />
-          </label>
+              required 
+            />
 
-          <label htmlFor="product-category">
-            <span>Catgeory</span>
+            <label htmlFor="product-category">Select catgeory</label>
             <select onChange={(e) => setCatgeory(e.target.value)}>
               <option value="">Select category</option>
               {options.map((option, index) => <option value={option} key={index}>{option}</option>)}
             </select>
-          </label>
 
-          <label htmlFor="stock">
-            <span>Quantity available</span>
+            <label htmlFor="stock">Quantity available</label>
             <input 
-              type="number"
               value={stock}
               onChange = {(e) => setStock(e.target.value)}
-              required /> 
-          </label>
-          <button type="submit">Add</button>
-          {/* error message is not displayed on screen */}
-          { errorMessages }
-      </form>
+              required
+            /> 
+           
+            <button type="submit">Save</button>
+            {/* error message is not displayed on screen */}
+            { errorMessages }
+        </form>
+      </div>
     </section>
   )
 }
