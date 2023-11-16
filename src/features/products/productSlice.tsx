@@ -28,13 +28,12 @@ const initialState: ProductState = {
 
 export const fetchProducts = createAsyncThunk("products/fetchProducts", async () => {
     const res = await fetch(`http://127.0.0.1:3000/product/`);
-    if(!res.ok) throw new Error("Product download failed: Please refresh the application")
+    if(!res.ok) throw new Error("Product download failed: Please refresh the application");
     return res.json(); 
 });
 
 export const postProduct = createAsyncThunk("products/postProducts", async(productData: ProductData) => {
   const product = {...productData, price: +productData.price, stock: +productData.stock, }
-  console.log(product);
   const res =  await fetch(`http://127.0.0.1:3000/product/`, {
     method: "POST", 
     headers: {
@@ -42,7 +41,7 @@ export const postProduct = createAsyncThunk("products/postProducts", async(produ
     },
     body: JSON.stringify(product),
   });
-  if(!res.ok) throw new Error("Product could not be saved, Please try gain")
+  if(!res.ok) throw new Error("Product could not be saved, Please try gain");
   return await res.json();
 });
 

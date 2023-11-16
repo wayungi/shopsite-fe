@@ -291,3 +291,26 @@ form.new-product-form button {
     margin: auto;
     margin-top: 20px;
 }
+
+/* product management */
+section.product-management {
+   padding:10px;
+
+}
+
+article.management-panel {
+  width:400px;
+  height: 500px;
+  outline:1px solid red;
+}
+
+div.management-image {
+    height:400px;
+    
+}
+
+.management-image img {
+    width:100%;
+    height:100%;
+    object-fit: cover;
+}
