@@ -9,19 +9,28 @@ const ProductManagement = () => {
   const products =  useAppSelector(selectProducts);
   let content: (ReactNode[] | null) = null;
 
+  console.log(products[0])
+
   if(products.length > 0) {
     content = products.map((product) => <article key={product._id} className="management-panel">
-        <div className="management-image">
+        {/* <div className="management-image">
           <img src={product.serverImagePath} alt={product.name} />
         </div>
-        <label htmlFor="name">Name</label>
-        <input type="text" value={product.name} id="name"/>
-        <label htmlFor="price">Price</label>
-        <input type="text" value={product.price.toString()} id="price"/>
-        <label htmlFor="category">category</label>
-        <input type="text" value={product.category} id="category"/>
-        <label htmlFor="quantity">Quantity</label>
-        <input type="text" value={product.stock.toString()} id="quantity"/>
+        <div className="management-data">
+          <label htmlFor="name">Name</label>
+          <input type="text" value={product.name} id="name" contentEditable/>
+          <label htmlFor="price">Price</label>
+          <input type="text" value={product.price.toString()} id="price"/>
+          <label htmlFor="category">category</label>
+          <input type="text" value={product.category} id="category"/>
+          <label htmlFor="quantity">Quantity</label>
+          <input type="text" value={product.stock.toString()} id="quantity"/>
+        </div>
+
+        <div>
+          <button>Edit</button>
+          <button>Save</button>
+        </div> */}
       </article>
       );
   }

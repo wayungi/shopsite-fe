@@ -299,13 +299,14 @@ section.product-management {
 }
 
 article.management-panel {
-  width:400px;
-  height: 500px;
+  width:350px;
+  height: 700px;
   outline:1px solid red;
 }
 
 div.management-image {
     height:400px;
+    margin-bottom: 20px;
     
 }
 
@@ -313,4 +314,24 @@ div.management-image {
     width:100%;
     height:100%;
     object-fit: cover;
+}
+
+.management-data {
+    display: flex;
+    flex-direction:column;
+    padding:0 5px;
+}
+
+.management-data label {
+    font-size:1.2em;
+    margin:10px 0 1px 0;
+}
+
+.management-data input {
+    border:none;
+    border-bottom: 1px solid grey;
+}
+
+.management-data input:focus {
+    outline:none;
 }
