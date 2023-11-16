@@ -2,10 +2,10 @@ type Product = {
     "_id": string, 
     "name": string,
     "serverImagePath": string,
-    "price": Number,
+    "price": number,
     "category": string,
-    "stock": Number,
-    "__v": Number
+    "stock": number,
+    "__v": number
 }
 
 export default Product;
