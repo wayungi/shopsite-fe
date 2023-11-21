@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 import { useAppDispatch } from '../app/hooks';
 import { updateProduct } from '../features/products/productSlice';
 
@@ -20,6 +20,14 @@ const ManagementPanel = ({_id, serverImagePath, name, price, category, stock}: p
   const [categoryEdit, setCategory] =  useState(category)
   const [stockEdit, setStock] = useState(stock.toString());
   const [readOnly, setReadOnly] = useState(true);
+  const [isUpdated, setIsUpdated] = useState(false);
+
+  useEffect(() => {
+    if(!readOnly){
+      setIsUpdated(true);
+      console.log("readonly is true")
+    }
+  }, [nameEdit, priceEdit, categoryEdit, stockEdit, isUpdated])
 
   const handlePriceChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newPrice = parseFloat(event.target.value);
@@ -34,6 +42,8 @@ const ManagementPanel = ({_id, serverImagePath, name, price, category, stock}: p
   }
 
   const handleSave = () => {
+    if(!isUpdated) return;
+    setIsUpdated(false);
     const areValuesSet = [nameEdit, priceEdit, stockEdit].every((field) => field !== '');
     if(!areValuesSet) return;
     setReadOnly(true);
@@ -46,6 +56,7 @@ const ManagementPanel = ({_id, serverImagePath, name, price, category, stock}: p
       stock: stockEdit
     };
 
+    
     dispatch(updateProduct(productEdits));
 
   }
