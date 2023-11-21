@@ -18,6 +18,10 @@ type ProductData = {
   stock: string
 }
 
+type ProductId = {
+  _id: string
+}
+
 const initialState: ProductState = {
     products: [],
     categories: ["Kitchen ware", "games", "foot wear"],
@@ -59,6 +63,18 @@ export const updateProduct = createAsyncThunk("products/updateProduct", async(pr
   return await res.json();
 })
 
+export const deleteProduct = createAsyncThunk('products/deleteProduct', async(productId: ProductId) => {
+  const res =  await fetch('http://127.0.0.1:3000/product/', {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(productId)
+  });
+  if(!res.ok) throw new Error("Product not deleted");
+  return await res.json();
+})
+
 export const ProductSlice = createSlice({
   name: 'products',
   initialState,
@@ -66,12 +82,7 @@ export const ProductSlice = createSlice({
     addProduct: (state, action: PayloadAction<Product>) => {
       state.products = [...state.products, action.payload]
     },
-    
-    deleteProduct: (state, action: PayloadAction<string>) => {
-      state.products = state.products.filter((product) => product._id !== action.payload);
-    },// Define the initial state using that type
-
-    
+       
     editProduct: (state, action: PayloadAction<Product>) => {
       const filteredProduct =  state.products.filter((product) => product._id === action.payload._id);
       const filteredProducts= state.products.filter((product) => product._id !== action.payload._id);
@@ -89,7 +100,6 @@ export const ProductSlice = createSlice({
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.products = [...action.payload.products];
-        //console.log(state.products)
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.error = action.error.message;
@@ -101,9 +111,13 @@ export const ProductSlice = createSlice({
         const filteredProducts = state.products.filter((product) => product._id !== payload._id);
         state.products = [...filteredProducts, payload]
       })
+      .addCase(deleteProduct.fulfilled, (state, { payload }) => {
+        const filteredProducts = state.products.filter((product) => product._id !== payload._id);
+        state.products = [...filteredProducts];
+      })
   },
 })
 
-export const { addProduct, deleteProduct, editProduct } = ProductSlice.actions;
+export const { addProduct, editProduct } = ProductSlice.actions;
 export const selectProducts = (state: RootState) => state.products.products;
 export default ProductSlice.reducer;

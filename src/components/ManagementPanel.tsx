@@ -1,6 +1,6 @@
-import { useState, ChangeEvent, useEffect } from 'react';
+import { useState, ChangeEvent, MouseEvent, useEffect } from 'react';
 import { useAppDispatch } from '../app/hooks';
-import { updateProduct } from '../features/products/productSlice';
+import { updateProduct, deleteProduct } from '../features/products/productSlice';
 
 interface props {
   _id: string,
@@ -55,10 +55,14 @@ const ManagementPanel = ({_id, serverImagePath, name, price, category, stock}: p
       category: categoryEdit,
       stock: stockEdit
     };
-
-    
     dispatch(updateProduct(productEdits));
+  }
 
+  const handleDelete = () => {
+    const productId = { 
+      _id,
+    };
+    dispatch(deleteProduct(productId));
   }
        
   return (
@@ -81,7 +85,7 @@ const ManagementPanel = ({_id, serverImagePath, name, price, category, stock}: p
         <div className="management-controls">
             <button onClick={() => setReadOnly(false)}>Edit</button>
             <button onClick={handleSave}>Save</button>
-            <button>Delete</button>
+            <button onClick={handleDelete}>Delete</button>
         </div>
     </article>
   );
