@@ -9,6 +9,7 @@ const ProductManagement = () => {
 
   if(products.length > 0) {
     content = products.map((product) => <ManagementPanel key={product._id}
+      _id={product._id}
       serverImagePath={product.serverImagePath}
       name={product.name}
       price={product.price}
