@@ -3,6 +3,7 @@ import { postProduct } from './productSlice';
 import { useAppDispatch } from '../../app/hooks';
 import axios from 'axios';
 
+
 // temporarly import, data will come from database
 import options from '../../Model/optons';
 
@@ -59,7 +60,7 @@ const AddNewProduct = () => {
       axios.post(API, formData)
       .then(res => {
         setServerImagePath(res.data.secure_url);
-        dispatch(postProduct({name, serverImagePath, price, category, stock}))
+        dispatch(postProduct({name, serverImagePath, price, category, stock}));
       })
       .catch(err => console.log(err.request));
     }

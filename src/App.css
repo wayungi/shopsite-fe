@@ -291,3 +291,64 @@ form.new-product-form button {
     margin: auto;
     margin-top: 20px;
 }
+
+/* product management */
+section.product-management {
+   padding:10px;
+
+}
+
+article.management-panel {
+  width:300px;
+  height: 600px;
+  outline:1px solid red;
+}
+
+div.management-image {
+    height:300px;
+    margin-bottom: 20px;
+    
+}
+
+.management-image img {
+    width:100%;
+    height:100%;
+    object-fit: cover;
+}
+
+.management-data {
+    display: flex;
+    flex-direction:column;
+    padding:0 5px;
+}
+
+.management-data label {
+    font-size:1.2em;
+    margin:10px 0 1px 0;
+}
+
+.management-data input {
+    border:none;
+    border-bottom: 1px solid grey;
+}
+
+.management-data input:focus {
+    outline:none;
+}
+
+/* admin control buttons */
+
+.management-controls {
+    margin-top: 20px;
+    padding:20px
+}
+
+.management-controls button {
+    width: 30%;
+    height:40px;
+    border:1px solid rgba(120, 120, 120, .5);
+}
+
+.management-controls button:nth-child(even) {
+    margin: 0 10px;
+}
