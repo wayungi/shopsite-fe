@@ -3,13 +3,6 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../app/store';
 import Product from '../../Model/Product';
 
-interface ProductState {
-    products: Product[],
-    categories: string[],
-    status: 'idle' | 'loading' | 'succeeded' | 'failed'
-    error: string | undefined,
-  }
-
 type ProductData = {
   name: string,
   imageUrl: string,
@@ -22,7 +15,39 @@ type ProductId = {
   _id: string
 }
 
+type CartItem = {
+  name: string,
+  unitPrice: number,
+  quantity: number,
+  total:
+}
+
+type Cart = {
+  items: CartItem[],
+  grandTotal: number,
+  status: "pending" | "sent" | "served"
+}
+
+type Transactions = Cart[]
+
+interface ProductState {
+  transactions: Transactions,
+  products: Product[],
+  categories: string[],
+  status: 'idle' | 'loading' | 'succeeded' | 'failed'
+  error: string | undefined,
+}
+
+
 const initialState: ProductState = {
+    transactions: [], // array of orders
+
+    // cart: {
+    //   items: [], // {name: flat iron, unit Price: 90000, quantity: 2, total: 180000}
+    //   grandTotal: 0.00, // total cost of all items in cart
+    //   status: 'pending' // pending/sent/serverd
+    // }
+
     products: [],
     categories: ["Kitchen ware", "games", "foot wear"],
     status: "idle",
@@ -38,7 +63,6 @@ export const fetchProducts = createAsyncThunk("products/fetchProducts", async ()
 
 export const postProduct = createAsyncThunk("products/postProducts", async(productData: ProductData) => {
   const product = {...productData, price: +productData.price, stock: +productData.stock }
-  console.log(product)
   const res =  await fetch(`http://127.0.0.1:3000/product/`, {
     method: "POST", 
     headers: {
@@ -52,7 +76,6 @@ export const postProduct = createAsyncThunk("products/postProducts", async(produ
 
 export const updateProduct = createAsyncThunk("products/updateProduct", async(productData: ProductData) => {
   const product = {...productData, price: +productData.price, stock: +productData.stock }
-  // console.log(product)
   const res =  await fetch('http://127.0.0.1:3000/product/', {
     method: "PUT",
     headers: {
