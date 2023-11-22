@@ -17,7 +17,7 @@ const Product = () => {
       // Refactor this artcile into a component
       <article className="product-panel" key={product._id} >
         <div className="item-image">
-          <img src={product.serverImagePath} alt={product.name} />
+          <img src={product.imageUrl} alt={product.name} />
         </div>
         <h3 className="item-desc">{product.name}</h3>
         <h4 className="item-desc"> UGX: {product.price.toString()}</h4>

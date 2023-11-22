@@ -1,7 +1,7 @@
 type Product = {
     "_id": string, 
     "name": string,
-    "serverImagePath": string,
+    "imageUrl": string,
     "price": number,
     "category": string,
     "stock": number,

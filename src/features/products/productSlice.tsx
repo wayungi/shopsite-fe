@@ -12,7 +12,7 @@ interface ProductState {
 
 type ProductData = {
   name: string,
-  serverImagePath: string,
+  imageUrl: string,
   price: string,
   category: string,
   stock: string
@@ -37,13 +37,14 @@ export const fetchProducts = createAsyncThunk("products/fetchProducts", async ()
 });
 
 export const postProduct = createAsyncThunk("products/postProducts", async(productData: ProductData) => {
-  const product = {...productData, price: +productData.price, stock: +productData.stock, }
+  const product = {...productData, price: +productData.price, stock: +productData.stock }
+  console.log(product)
   const res =  await fetch(`http://127.0.0.1:3000/product/`, {
     method: "POST", 
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(product),
+    body: JSON.stringify(product)        
   });
   if(!res.ok) throw new Error("Product could not be saved, Please try gain");
   return await res.json();

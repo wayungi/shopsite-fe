@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, MouseEvent, useEffect } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 import { useAppDispatch } from '../app/hooks';
 import { updateProduct, deleteProduct } from '../features/products/productSlice';
 

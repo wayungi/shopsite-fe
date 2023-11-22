@@ -20,7 +20,7 @@ const AddNewProduct = () => {
   const [stock, setStock] = useState<string>('');
   const [hasErrors, setHasError] = useState<boolean>(false);
   const [file, setFile] = useState<File | undefined>();
-  const [serverImagePath, setServerImagePath] = useState<string>('');
+  // const [serverImagePath, setServerImagePath] = useState<string>('');
   const errors: string[] = [];
   let errorMessages: (ReactNode | null) = null;
   const [preview, setPreview] = useState<Blob | MediaSource > (new File(["default"], "default.png"));
@@ -28,15 +28,17 @@ const AddNewProduct = () => {
   useEffect(() => {
     if(file !== undefined){
       setPreview(file)
-    }
-    
-    // free memory when ever this component is unmounted
-    // return () => URL.revokeObjectURL(objectUrl)      
- }, [file])
+    }    
+  }, [file]);
+
+
 
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
     setLocalImagePath(event.target.value); 
     setFile(event.target.files?.[0]);
+
+    // console.log(localImagePath)
+    // console.log(file)
   }
 
   const handleFormSubmission = (event: FormEvent<HTMLFormElement>) => {
@@ -59,8 +61,13 @@ const AddNewProduct = () => {
       formData.append('upload_preset', PRESET_KEY);
       axios.post(API, formData)
       .then(res => {
-        setServerImagePath(res.data.secure_url);
-        dispatch(postProduct({name, serverImagePath, price, category, stock}));
+        dispatch(postProduct(
+          { name,
+            imageUrl: res.data.secure_url, 
+            price,
+            category,
+            stock
+          }));
       })
       .catch(err => console.log(err.request));
     }
