@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import ErrorPage from './components/ErrorPage.tsx';
 import Product from './features/products/Product';
-import AddNewProduct from './features/products/AddNewProduct';;
+import AddNewProduct from './features/products/AddNewProduct';
 import Cart from './features/products/Cart';
 import Orders from './features/products/Orders';
 import ProductManagement from './features/products/ProductManagement';

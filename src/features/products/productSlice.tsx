@@ -21,20 +21,16 @@ type CartItem = {
   src: string,
   unitPrice: number,
   quantity: number,
-  total: number,
 }
 
 type Cart = {
   items: CartItem[],
-  grandTotal: number,
   status: "pending" | "sent" | "served",
-  date: Date
+  date: string,
 }
 
-type Transactions = Cart[]
-
 interface ProductState {
-  transactions: Transactions,
+  transactions: Cart[],
   products: Product[],
   categories: string[],
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
@@ -52,7 +48,6 @@ const initialState: ProductState = {
             src: "https://res.cloudinary.com/ddwvtbyfm/image/upload/v1700633177/rowxvbv8vibbamaeeazl.jpg",
             unitPrice: 450000,
             quantity: 2,
-            total: 900000,
           },
           {
             id: "655d9b4866ea5987e81d6813",
@@ -60,12 +55,10 @@ const initialState: ProductState = {
             src: "https://res.cloudinary.com/ddwvtbyfm/image/upload/v1700633416/prmbdywoafulyc25vyx4.jpg",
             unitPrice: 75000,
             quantity: 1,
-            total: 75000,
           }
         ], 
-        grandTotal:975000.00,
         status: "pending",
-        date: new Date()
+        date: new Date().toDateString()
       },
 
       {
@@ -76,7 +69,6 @@ const initialState: ProductState = {
             src: "https://res.cloudinary.com/ddwvtbyfm/image/upload/v1700633451/ra6mbdy2srvlh1rp2wao.jpg",
             unitPrice: 180000,
             quantity: 2,
-            total: 360000.00,
           },
           {
             id: "655d9a7e66ea5987e81d680f",
@@ -84,12 +76,10 @@ const initialState: ProductState = {
             src: "https://res.cloudinary.com/ddwvtbyfm/image/upload/v1700633213/rooqrciteklbu1h2rxcw.jpg",
             unitPrice: 2000,
             quantity: 10,
-            total: 20000.00,
           }
         ], 
-        grandTotal: 380000.00,
         status: "sent",
-        date: new Date()
+        date: new Date().toDateString()
       },
       {
         items: [
@@ -99,7 +89,6 @@ const initialState: ProductState = {
             src: "https://res.cloudinary.com/ddwvtbyfm/image/upload/v1700633489/kifikzvg9elfwfcksqpp.jpg",
             unitPrice: 90000,
             quantity: 1,
-            total: 90000,
           },
           {
             id: "655d9bc066ea5987e81d6819",
@@ -107,12 +96,10 @@ const initialState: ProductState = {
             src: "https://res.cloudinary.com/ddwvtbyfm/image/upload/v1700633535/vzoffphgznzeillkb0gx.jpg",
             unitPrice: 150000,
             quantity: 1,
-            total: 150000,
           }
         ], 
-        grandTotal: 240000.0,
         status: "served",
-        date: new Date()
+        date: new Date().toDateString()
       }
     ],
     products: [],
@@ -211,5 +198,5 @@ export const ProductSlice = createSlice({
 
 export const { addProduct, editProduct } = ProductSlice.actions;
 export const selectProducts = (state: RootState) => state.products.products;
-export const selectCart = (state: RootState) => state.products.transactions;
+export const selectCartHistory = (state: RootState) => state.products.transactions;
 export default ProductSlice.reducer;
