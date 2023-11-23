@@ -1,18 +1,23 @@
 import {useState} from 'react';
 import {AiOutlineUser, AiOutlineShoppingCart} from 'react-icons/ai';
 import { RiArrowDropDownLine } from 'react-icons/ri';
+import { cartItemCount } from '../features/products/productSlice';
+import { useAppSelector } from '../app/hooks';
 
 interface HeaderProps {
   setFilterValue: (value: string) => void
 }
 
 const Header = ({ setFilterValue }: HeaderProps) => {
+  const cartLength =  useAppSelector((state) => cartItemCount(state)) ;
   const [search, setSearch] =  useState<string>('');
 
   const handleSearch = (value: string) => {
     setSearch(value);
     setFilterValue(value);
   }
+
+
 
   return (
     <header className="flex">
@@ -45,6 +50,7 @@ const Header = ({ setFilterValue }: HeaderProps) => {
             </div>
             <div>
               <AiOutlineShoppingCart size="2em" aria-label="cart icon"/>
+              <p>{cartLength ? cartLength : ''}</p>
             </div>
         </div>
     </header>

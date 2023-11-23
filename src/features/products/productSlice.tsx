@@ -148,4 +148,5 @@ export const ProductSlice = createSlice({
 export const { addProduct, editProduct, addToCart, removeFromCart } = ProductSlice.actions;
 export const selectProducts = (state: RootState) => state.products.products;
 export const selectCartHistory = (state: RootState) => state.products.transactions;
+export const cartItemCount = (state: RootState) => state.products.transactions.length;
 export default ProductSlice.reducer;
