@@ -1,18 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../app/store';
-import Product from '../../Model/Product';
-
-interface ProductState {
-    products: Product[],
-    categories: string[],
-    status: 'idle' | 'loading' | 'succeeded' | 'failed'
-    error: string | undefined,
-  }
+import { Product, CartItem } from '../../Model/Product';
 
 type ProductData = {
   name: string,
-  serverImagePath: string,
+  imageUrl: string,
   price: string,
   category: string,
   stock: string
@@ -22,7 +15,34 @@ type ProductId = {
   _id: string
 }
 
+// type CartItem = {
+//   id: string,
+//   name: string,
+//   src: string,
+//   unitPrice: number,
+//   quantity: number,
+// }
+
+
+interface ProductState {
+  transactions: CartItem[],
+  products: Product[],
+  categories: string[],
+  status: 'idle' | 'loading' | 'succeeded' | 'failed'
+  error: string | undefined,
+}
+
+
 const initialState: ProductState = {
+    transactions: [
+          // {
+          //   id: "655d9a5a66ea5987e81d680d",
+          //   name: "Comfy chair armless",
+          //   src: "https://res.cloudinary.com/ddwvtbyfm/image/upload/v1700633177/rowxvbv8vibbamaeeazl.jpg",
+          //   unitPrice: 450000,
+          //   quantity: 2,
+          // },
+    ],
     products: [],
     categories: ["Kitchen ware", "games", "foot wear"],
     status: "idle",
@@ -37,13 +57,13 @@ export const fetchProducts = createAsyncThunk("products/fetchProducts", async ()
 });
 
 export const postProduct = createAsyncThunk("products/postProducts", async(productData: ProductData) => {
-  const product = {...productData, price: +productData.price, stock: +productData.stock, }
+  const product = {...productData, price: +productData.price, stock: +productData.stock }
   const res =  await fetch(`http://127.0.0.1:3000/product/`, {
     method: "POST", 
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(product),
+    body: JSON.stringify(product)        
   });
   if(!res.ok) throw new Error("Product could not be saved, Please try gain");
   return await res.json();
@@ -51,7 +71,6 @@ export const postProduct = createAsyncThunk("products/postProducts", async(produ
 
 export const updateProduct = createAsyncThunk("products/updateProduct", async(productData: ProductData) => {
   const product = {...productData, price: +productData.price, stock: +productData.stock }
-  // console.log(product)
   const res =  await fetch('http://127.0.0.1:3000/product/', {
     method: "PUT",
     headers: {
@@ -89,6 +108,14 @@ export const ProductSlice = createSlice({
       const editedProduct = {...filteredProduct, ...action.payload};
       state.products = [...filteredProducts, editedProduct];
     },
+
+    addToCart: (state, action: PayloadAction<CartItem>) => {
+      state.transactions = [...state.transactions, action.payload];
+    },
+
+    removeFromCart: (state, {payload}) => {
+      state.transactions = state.transactions.filter((cartItem) => cartItem.id !== payload);
+    }
   },
 
   extraReducers: (builder) => {
@@ -118,6 +145,8 @@ export const ProductSlice = createSlice({
   },
 })
 
-export const { addProduct, editProduct } = ProductSlice.actions;
+export const { addProduct, editProduct, addToCart, removeFromCart } = ProductSlice.actions;
 export const selectProducts = (state: RootState) => state.products.products;
+export const selectCartHistory = (state: RootState) => state.products.transactions;
+export const cartItemCount = (state: RootState) => state.products.transactions.length;
 export default ProductSlice.reducer;

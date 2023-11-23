@@ -2,6 +2,7 @@ import { selectProducts } from "./productSlice"
 import { useAppSelector } from "../../app/hooks"
 import { ReactNode } from "react";
 import { useOutletContext } from "react-router-dom";
+import ProductDisplay from "../../components/ProductDisplay";
 
 
 const Product = () => {
@@ -13,19 +14,16 @@ const Product = () => {
   // refactor this into another component
   if(status === "succeeded") {
     const filteredProducts = products.filter((product) => product.name.includes(filterValue)|| product.category.includes(filterValue));
-    content = filteredProducts.map((product) => (
-      // Refactor this artcile into a component
-      <article className="product-panel" key={product._id} >
-        <div className="item-image">
-          <img src={product.serverImagePath} alt={product.name} />
-        </div>
-        <h3 className="item-desc">{product.name}</h3>
-        <h4 className="item-desc"> UGX: {product.price.toString()}</h4>
-        <h4 className="item-desc">{product.category}</h4>
-        <h4 className="item-desc">Quantity available: {product.stock.toString()}</h4>
-        <button className="add-to-cart">Add to Cart</button>
-      </article>
-    ))
+    content = filteredProducts.map((product) => <ProductDisplay 
+      _id={product._id}
+      imageUrl={product.imageUrl}
+      name={product.name}
+      price={product.price}
+      category={product.category}
+      stock={product.stock}
+      __v={product.__v}
+    />
+    )
   }
 
 
