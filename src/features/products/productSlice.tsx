@@ -143,6 +143,12 @@ export const ProductSlice = createSlice({
       const editedProduct = {...filteredProduct, ...action.payload};
       state.products = [...filteredProducts, editedProduct];
     },
+
+    addToCart: (state, action) => {
+      state.transactions = [...state.transactions, action.payload]
+      console.log(state.transactions);
+      console.log(action)
+    }
   },
 
   extraReducers: (builder) => {
@@ -172,7 +178,7 @@ export const ProductSlice = createSlice({
   },
 })
 
-export const { addProduct, editProduct } = ProductSlice.actions;
+export const { addProduct, editProduct, addToCart } = ProductSlice.actions;
 export const selectProducts = (state: RootState) => state.products.products;
 export const selectCartHistory = (state: RootState) => state.products.transactions;
 export default ProductSlice.reducer;
