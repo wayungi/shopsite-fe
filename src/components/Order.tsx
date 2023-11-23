@@ -12,6 +12,13 @@ const Order = ({ id, name, src, unitPrice, quantity }: CartItem) => {
     // console.log(status);
     // console.log(date)
 
+    const handleReduceQunatity = () => {
+        setItemCount(itemCount - 1)
+    }
+    const handleAddQuantity = () => {
+        setItemCount(itemCount + 1)
+    }
+
     const item  = (
             <div className="item-display" key={id}>
                 <div className="item-desc">
@@ -30,9 +37,9 @@ const Order = ({ id, name, src, unitPrice, quantity }: CartItem) => {
                         <p>Remove</p>
                     </div>
                     <div className="add-remove">
-                        <MdRemove size="2em"/>
+                        <MdRemove size="2em" onClick={ handleReduceQunatity }/>
                             <p>{itemCount}</p>
-                        <MdAdd size="2em"/>
+                        <MdAdd size="2em" onClick={ handleAddQuantity }/>
                     </div>
                 </div>
                 
