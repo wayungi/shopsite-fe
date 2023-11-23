@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../app/store';
-import Product from '../../Model/Product';
+import { Product, CartItems } from '../../Model/Product';
 
 type ProductData = {
   name: string,
@@ -15,22 +15,22 @@ type ProductId = {
   _id: string
 }
 
-type CartItem = {
-  id: string,
-  name: string,
-  src: string,
-  unitPrice: number,
-  quantity: number,
-}
+// type CartItem = {
+//   id: string,
+//   name: string,
+//   src: string,
+//   unitPrice: number,
+//   quantity: number,
+// }
 
-type Cart = {
-  items: CartItem[],
-  status: "pending" | "sent" | "served",
-  date: string,
-}
+// type CartItem = {
+//   items: CartItem[],
+//   status: "pending" | "sent" | "served",
+//   date: string,
+// }
 
 interface ProductState {
-  transactions: Cart[],
+  transactions: CartItems[],
   products: Product[],
   categories: string[],
   status: 'idle' | 'loading' | 'succeeded' | 'failed'

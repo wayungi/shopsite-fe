@@ -352,3 +352,50 @@ div.management-image {
 .management-controls button:nth-child(even) {
     margin: 0 10px;
 }
+
+/* item display */
+
+div.item-display {
+    padding: 0 20px;
+    border: 5px solid blue;
+    display: flex;
+    flex-direction: column;
+
+    /* width:100%; */
+}
+
+.item-display .item-desc {
+    border:1px solid red;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.item-name-price {
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+    align-items: center;
+    padding: 0 20px;
+}
+
+div.cart-image {
+    /* border:1px solid black; */
+    width:100px;
+    height:100px;
+}
+
+.cart-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cart {
+    border: 3px solid green;
+    width:100%;
+}
+
+article.item-list {
+    border:2px solid black;
+    margin: 20px 10px;
+}
