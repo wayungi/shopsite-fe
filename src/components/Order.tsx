@@ -8,15 +8,15 @@ const Order = ({ id, name, src, unitPrice, quantity }: CartItem) => {
 
     const [itemCount, setItemCount] = useState(quantity);
 
-    // console.log(items)
-    // console.log(status);
-    // console.log(date)
-
     const handleReduceQunatity = () => {
         setItemCount(itemCount - 1)
     }
     const handleAddQuantity = () => {
         setItemCount(itemCount + 1)
+    }
+
+    const handleRemoveItem = () => {
+
     }
 
     const item  = (
@@ -32,8 +32,8 @@ const Order = ({ id, name, src, unitPrice, quantity }: CartItem) => {
                     </div>
                 </div>
                 <div className="item-controls">
-                    <div className="delete-item">
-                        <AiOutlineDelete size="2em"/>
+                    <div className="delete-item" onClick={handleRemoveItem}>
+                        <AiOutlineDelete size="2em" className="delete-item-button"/>
                         <p>Remove</p>
                     </div>
                     <div className="add-remove">
