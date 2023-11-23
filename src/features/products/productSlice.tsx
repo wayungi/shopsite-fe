@@ -35,48 +35,13 @@ interface ProductState {
 
 const initialState: ProductState = {
     transactions: [
-          {
-            id: "655d9a5a66ea5987e81d680d",
-            name: "Comfy chair armless",
-            src: "https://res.cloudinary.com/ddwvtbyfm/image/upload/v1700633177/rowxvbv8vibbamaeeazl.jpg",
-            unitPrice: 450000,
-            quantity: 2,
-          },
-          {
-            id: "655d9b4866ea5987e81d6813",
-            name: "Tea flask",
-            src: "https://res.cloudinary.com/ddwvtbyfm/image/upload/v1700633416/prmbdywoafulyc25vyx4.jpg",
-            unitPrice: 75000,
-            quantity: 1,
-          },
-          {
-            id: "655d9b6c66ea5987e81d6815",
-            name: "Phillips flat iron",
-            src: "https://res.cloudinary.com/ddwvtbyfm/image/upload/v1700633451/ra6mbdy2srvlh1rp2wao.jpg",
-            unitPrice: 180000,
-            quantity: 2,
-          },
-          {
-            id: "655d9a7e66ea5987e81d680f",
-            name: "Water cups",
-            src: "https://res.cloudinary.com/ddwvtbyfm/image/upload/v1700633213/rooqrciteklbu1h2rxcw.jpg",
-            unitPrice: 2000,
-            quantity: 10,
-          },
-          {
-            id: "655d9b9266ea5987e81d6817",
-            name: "Teflon Frying Pan",
-            src: "https://res.cloudinary.com/ddwvtbyfm/image/upload/v1700633489/kifikzvg9elfwfcksqpp.jpg",
-            unitPrice: 90000,
-            quantity: 1,
-          },
-          {
-            id: "655d9bc066ea5987e81d6819",
-            name: "Phillips Electric Kittle",
-            src: "https://res.cloudinary.com/ddwvtbyfm/image/upload/v1700633535/vzoffphgznzeillkb0gx.jpg",
-            unitPrice: 150000,
-            quantity: 1,
-          }
+          // {
+          //   id: "655d9a5a66ea5987e81d680d",
+          //   name: "Comfy chair armless",
+          //   src: "https://res.cloudinary.com/ddwvtbyfm/image/upload/v1700633177/rowxvbv8vibbamaeeazl.jpg",
+          //   unitPrice: 450000,
+          //   quantity: 2,
+          // },
     ],
     products: [],
     categories: ["Kitchen ware", "games", "foot wear"],
