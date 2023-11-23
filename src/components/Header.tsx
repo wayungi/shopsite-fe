@@ -17,8 +17,6 @@ const Header = ({ setFilterValue }: HeaderProps) => {
     setFilterValue(value);
   }
 
-
-
   return (
     <header className="flex">
         <div className="flex">
@@ -57,4 +55,4 @@ const Header = ({ setFilterValue }: HeaderProps) => {
   )
 }
 
-export default Header
+export default Header;
