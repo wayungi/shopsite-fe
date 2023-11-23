@@ -15,7 +15,7 @@ const ProductDisplay = ({_id, imageUrl, name, price, category, stock}: Product) 
             quantity: 1,
         }
        dispatch(addToCart(cartItem));
-    }
+    };
 
     const productDisplay = (
         <article className="product-panel" key={_id} >

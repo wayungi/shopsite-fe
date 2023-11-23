@@ -144,10 +144,12 @@ export const ProductSlice = createSlice({
       state.products = [...filteredProducts, editedProduct];
     },
 
-    addToCart: (state, action) => {
-      state.transactions = [...state.transactions, action.payload]
-      console.log(state.transactions);
-      console.log(action)
+    addToCart: (state, action: PayloadAction<CartItem>) => {
+      state.transactions = [...state.transactions, action.payload];
+    },
+
+    removeFromCart: (state, {payload}) => {
+      state.transactions = state.transactions.filter((cartItem) => cartItem.id !== payload);
     }
   },
 
@@ -178,7 +180,7 @@ export const ProductSlice = createSlice({
   },
 })
 
-export const { addProduct, editProduct, addToCart } = ProductSlice.actions;
+export const { addProduct, editProduct, addToCart, removeFromCart } = ProductSlice.actions;
 export const selectProducts = (state: RootState) => state.products.products;
 export const selectCartHistory = (state: RootState) => state.products.transactions;
 export default ProductSlice.reducer;
