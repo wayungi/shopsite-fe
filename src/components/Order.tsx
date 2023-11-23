@@ -37,9 +37,9 @@ const Order = ({ id, name, src, unitPrice, quantity }: CartItem) => {
                         <p>Remove</p>
                     </div>
                     <div className="add-remove">
-                        <MdRemove size="2em" onClick={ handleReduceQunatity }/>
+                        <MdRemove size="2em" onClick={ handleReduceQunatity } className="quantity-btn"/>
                             <p>{itemCount}</p>
-                        <MdAdd size="2em" onClick={ handleAddQuantity }/>
+                        <MdAdd size="2em" onClick={ handleAddQuantity } className="quantity-btn"/>
                     </div>
                 </div>
                 

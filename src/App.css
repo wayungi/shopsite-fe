@@ -406,6 +406,16 @@ div.cart-image {
     width:100%;
 }
 
+/* qunatity buttons in the cart */
+.quantity-btn {
+    border-radius: 2px;
+}
+
+.quantity-btn:hover {
+    cursor: pointer;
+    outline: 1px solid grey;
+} 
+
 /* article.item-list {
     border:2px solid black;
     margin: 20px 10px;
