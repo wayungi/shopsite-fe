@@ -15,11 +15,4 @@ export type CartItem = {
     unitPrice: number,
     quantity: number,
 }
-  
-export type CartItems = {
-    items: CartItem[],
-    status: "pending" | "sent" | "served",
-    date: string,
-}
-  
 

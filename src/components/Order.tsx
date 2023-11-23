@@ -1,23 +1,26 @@
-import { CartItems } from "../Model/Product";
+import { useState } from 'react';
+import { CartItem } from "../Model/Product";
 import { AiOutlineDelete } from "react-icons/ai";
+import { MdAdd, MdRemove} from "react-icons/md";
 
 
-const Order = ({ items, status, date }: CartItems) => {
+const Order = ({ id, name, src, unitPrice, quantity }: CartItem) => {
 
+    const [itemCount, setItemCount] = useState(quantity);
 
     // console.log(items)
     // console.log(status);
     // console.log(date)
 
-    const ItemList = items.map((item, index) => (
-            <div className="item-display" key={index}>
+    const item  = (
+            <div className="item-display" key={id}>
                 <div className="item-desc">
                     <div className="cart-image">
-                        <img src={item.src} />
+                        <img src={src} />
                     </div>
                     <div className="item-name-price">
-                        <p>{item.name}</p>
-                        <p>{item.unitPrice}</p>
+                        <p>{name}</p>
+                        <p>{unitPrice}</p>
                         {/* <p>{item.unitPrice * item.quantity}</p> */}
                     </div>
                 </div>
@@ -26,20 +29,19 @@ const Order = ({ items, status, date }: CartItems) => {
                         <AiOutlineDelete size="2em"/>
                         <p>Remove</p>
                     </div>
-                    <div>
-                        <button>-</button>
-                        <p>{item.quantity}</p>
-                        <button>+</button>
+                    <div className="add-remove">
+                        <MdRemove size="2em"/>
+                            <p>{itemCount}</p>
+                        <MdAdd size="2em"/>
                     </div>
                 </div>
                 
             </div>
-        )
-    )
+        );
 
     return (
         <article className="item-list">
-            {ItemList}
+            {item}
         </article>
     )
 

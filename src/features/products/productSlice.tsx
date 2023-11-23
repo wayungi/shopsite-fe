@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../app/store';
-import { Product, CartItems } from '../../Model/Product';
+import { Product, CartItem } from '../../Model/Product';
 
 type ProductData = {
   name: string,
@@ -23,14 +23,9 @@ type ProductId = {
 //   quantity: number,
 // }
 
-// type CartItem = {
-//   items: CartItem[],
-//   status: "pending" | "sent" | "served",
-//   date: string,
-// }
 
 interface ProductState {
-  transactions: CartItems[],
+  transactions: CartItem[],
   products: Product[],
   categories: string[],
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
@@ -40,8 +35,6 @@ interface ProductState {
 
 const initialState: ProductState = {
     transactions: [
-      {
-        items: [
           {
             id: "655d9a5a66ea5987e81d680d",
             name: "Comfy chair armless",
@@ -55,14 +48,7 @@ const initialState: ProductState = {
             src: "https://res.cloudinary.com/ddwvtbyfm/image/upload/v1700633416/prmbdywoafulyc25vyx4.jpg",
             unitPrice: 75000,
             quantity: 1,
-          }
-        ], 
-        status: "pending",
-        date: new Date().toDateString()
-      },
-
-      {
-        items: [
+          },
           {
             id: "655d9b6c66ea5987e81d6815",
             name: "Phillips flat iron",
@@ -76,13 +62,7 @@ const initialState: ProductState = {
             src: "https://res.cloudinary.com/ddwvtbyfm/image/upload/v1700633213/rooqrciteklbu1h2rxcw.jpg",
             unitPrice: 2000,
             quantity: 10,
-          }
-        ], 
-        status: "sent",
-        date: new Date().toDateString()
-      },
-      {
-        items: [
+          },
           {
             id: "655d9b9266ea5987e81d6817",
             name: "Teflon Frying Pan",
@@ -97,10 +77,6 @@ const initialState: ProductState = {
             unitPrice: 150000,
             quantity: 1,
           }
-        ], 
-        status: "served",
-        date: new Date().toDateString()
-      }
     ],
     products: [],
     categories: ["Kitchen ware", "games", "foot wear"],
