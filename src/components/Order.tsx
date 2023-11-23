@@ -1,4 +1,6 @@
 import { CartItems } from "../Model/Product";
+import { AiOutlineDelete } from "react-icons/ai";
+
 
 const Order = ({ items, status, date }: CartItems) => {
 
@@ -20,8 +22,9 @@ const Order = ({ items, status, date }: CartItems) => {
                     </div>
                 </div>
                 <div className="item-controls">
-                    <div>
-                        <button>Remove</button>
+                    <div className="delete-item">
+                        <AiOutlineDelete size="2em"/>
+                        <p>Remove</p>
                     </div>
                     <div>
                         <button>-</button>

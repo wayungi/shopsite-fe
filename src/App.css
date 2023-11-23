@@ -370,6 +370,18 @@ div.item-display {
     display: flex;
 }
 
+.item-controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* delete item from cart button */
+.delete-item {
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+
 .item-name-price {
     display: flex;
     justify-content: space-between;
