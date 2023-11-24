@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CartItem } from "../Model/Product";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdAdd, MdRemove} from "react-icons/md";
-import { removeFromCart } from '../features/products/productSlice';
+import { removeFromCart, changeQunatity } from '../features/products/productSlice';
 import { useAppDispatch } from '../app/hooks';
 
 // interface OrderProps {
@@ -18,12 +18,16 @@ const Order = ({ id, name, src, unitPrice, quantity }: CartItem) => {
     const [itemCount, setItemCount] = useState(quantity);
 
     const handleReduceQunatity = () => {
-        setItemCount(itemCount - 1)
-        
+        setItemCount((itemCount) => itemCount - 1)
     }
+
     const handleAddQuantity = () => {
-        setItemCount(itemCount + 1)
+        setItemCount((itemCount) => itemCount + 1)
     }
+
+    useEffect(() => {
+        dispatch(changeQunatity({id, itemCount}))
+    }, [itemCount])
 
     const handleRemoveItem = () => {
         dispatch(removeFromCart(id));

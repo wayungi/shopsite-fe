@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import { selectCartHistory } from "./productSlice";
 import { useAppSelector } from "../../app/hooks";
 import Order from "../../components/Order";
@@ -8,6 +8,7 @@ import CartSummary from "../../components/CartSummart";
 const Cart = () => {
   const [orderTotal, setOrderTotal] =  useState<number>(0);
   const cartHistory: CartItem[] =  useAppSelector((state) => selectCartHistory(state));
+
 
   useEffect(() => {
     const total = cartHistory.reduce(
