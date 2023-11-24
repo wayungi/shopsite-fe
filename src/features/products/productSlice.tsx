@@ -25,7 +25,7 @@ type ProductId = {
 
 
 interface ProductState {
-  transactions: CartItem[],
+  orderedItems: CartItem[],
   products: Product[],
   categories: string[],
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
@@ -34,7 +34,7 @@ interface ProductState {
 
 
 const initialState: ProductState = {
-    transactions: [
+    orderedItems: [
           // {
           //   id: "655d9a5a66ea5987e81d680d",
           //   name: "Comfy chair armless",
@@ -110,11 +110,25 @@ export const ProductSlice = createSlice({
     },
 
     addToCart: (state, action: PayloadAction<CartItem>) => {
-      state.transactions = [...state.transactions, action.payload];
+      state.orderedItems = [...state.orderedItems, action.payload];
+    },
+
+    changeQunatity: (state, { payload: { id, itemCount} }) => {
+      if(itemCount < 1) return;
+
+      const updatedOrder = state.orderedItems.map((orderedItem) => {
+        if(orderedItem.id === id) {
+          return {...orderedItem, quantity: parseInt(itemCount)}
+        }
+        return orderedItem;
+      });
+
+      console.log(updatedOrder)
+      state.orderedItems = [...updatedOrder]
     },
 
     removeFromCart: (state, {payload}) => {
-      state.transactions = state.transactions.filter((cartItem) => cartItem.id !== payload);
+      state.orderedItems = state.orderedItems.filter((cartItem) => cartItem.id !== payload);
     }
   },
 
@@ -145,8 +159,8 @@ export const ProductSlice = createSlice({
   },
 })
 
-export const { addProduct, editProduct, addToCart, removeFromCart } = ProductSlice.actions;
+export const { addProduct, editProduct, addToCart, removeFromCart, changeQunatity } = ProductSlice.actions;
 export const selectProducts = (state: RootState) => state.products.products;
-export const selectCartHistory = (state: RootState) => state.products.transactions;
-export const cartItemCount = (state: RootState) => state.products.transactions.length;
+export const selectCartHistory = (state: RootState) => state.products.orderedItems;
+export const cartItemCount = (state: RootState) => state.products.orderedItems.length;
 export default ProductSlice.reducer;
