@@ -5,12 +5,21 @@ import { MdAdd, MdRemove} from "react-icons/md";
 import { removeFromCart } from '../features/products/productSlice';
 import { useAppDispatch } from '../app/hooks';
 
+// interface OrderProps {
+//     id: string,
+//     name: string,
+//     src: string,
+//     unitPrice: number,
+//     quantity: number,
+// }
+
 const Order = ({ id, name, src, unitPrice, quantity }: CartItem) => {
     const dispatch =  useAppDispatch()
     const [itemCount, setItemCount] = useState(quantity);
 
     const handleReduceQunatity = () => {
         setItemCount(itemCount - 1)
+        
     }
     const handleAddQuantity = () => {
         setItemCount(itemCount + 1)
